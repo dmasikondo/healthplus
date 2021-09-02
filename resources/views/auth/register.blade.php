@@ -6,28 +6,59 @@
 
         <x-jet-validation-errors class="mb-4" />
 
+
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <div>
-                <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            </div>
+        <div class="flex gap-2 flex-col md:flex-row center lg:min-w-7xl">            
+                <div class="mt-4 relative flex-1">
+                    <x-form.input id="surname" type="text" name="surname" placeholder="Surname" value="{{old('surname')}}" required/> 
+                    <x-form.label for="surname">Surname</x-form.label>             
+                    <div class="absolute right-0 top-0 mt-6 mr-2">
+                        <x-icon name="user-group" class="h-6 w-6 text-indigo-600 " stroke-width="1"/>                           
+                    </div>
+                    <p class="text-red-900 italic text-sm">@error('surname') {{$message}} @enderror</p>                    
+                </div>
 
-            <div class="mt-4">
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
+                <div class="mt-4 relative flex-1">
+                    <x-form.input id="first_name" type="text" name="first_name" placeholder="Names" value="{{old('first_name')}}" required/> 
+                    <x-form.label for="first_name">First Name(s)</x-form.label>             
+                    <div class="absolute right-0 top-0 mt-6 mr-2">
+                        <x-icon name="user" class="h-6 w-6 text-indigo-600 " stroke-width="1"/>                           
+                    </div>
+                    <p class="text-red-900 italic text-sm">@error('names') {{$message}} @enderror</p>                    
+                </div>    
+        </div>
 
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            </div>
+        <div class="flex gap-2 flex-col md:flex-row center">            
+                <div class="mt-4 relative flex-1">
+                    <x-form.input id="email" type="email" name="email" placeholder="Email" value="{{old('email')}}" required/> 
+                    <x-form.label for="email">Email</x-form.label>             
+                    <div class="absolute right-0 top-0 mt-6 mr-2">
+                        <x-icon name="mail-open" class="h-6 w-6 text-indigo-600 " stroke-width="1"/>                           
+                    </div>
+                    <p class="text-red-900 italic text-sm">@error('email') {{$message}} @enderror</p>                    
+                </div>      
+        </div>
 
-            <div class="mt-4">
-                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-            </div>
+        <div class="flex gap-2 flex-col md:flex-row center">            
+                <div class="mt-4 relative flex-1">
+                    <x-form.input id="password" type="password" name="password" placeholder="Password" required/> 
+                    <x-form.label for="password">Password</x-form.label>             
+                    <div class="absolute right-0 top-0 mt-6 mr-2">
+                        <x-icon name="lock-closed" class="h-6 w-6 text-indigo-600 " stroke-width="1"/>                           
+                    </div>
+                    <p class="text-red-900 italic text-sm">@error('password') {{$message}} @enderror</p>                    
+                </div>
+
+                <div class="mt-4 relative flex-1">
+                    <x-form.input id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm Password" required/> 
+                    <x-form.label for="password_confirmation">Confirm Password</x-form.label>             
+                    <div class="absolute right-0 top-0 mt-6 mr-2">
+                        <x-icon name="key" class="h-6 w-6 text-indigo-600 " stroke-width="1"/>                           
+                    </div>                 
+                </div>  
+        </div>      
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">
@@ -54,6 +85,11 @@
                 <x-jet-button class="ml-4">
                     {{ __('Register') }}
                 </x-jet-button>
+                <x-jet-button class="ml-4">
+                    <a href="/">
+                        <x-icon name="home" class="w-5 h-5"/>
+                    </a>
+                </x-jet-button>                
             </div>
         </form>
     </x-jet-authentication-card>

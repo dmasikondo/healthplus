@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
@@ -17,17 +18,23 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
-    protected $fillable = [
-        'name',
+/*    protected $fillable = [
+        'surname',
+        'first_name',
         'email',
+        'slug',
+        'na'
         'password',
-    ];
+    ];*/
+
+     protected $guarded =[];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -58,4 +65,44 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class)->withTimestamps();    
+    } 
+
+    /**
+     * Assign user a role
+     */
+
+    public function assignRole($role)
+    {
+       // $check_if_role_exists = Role::where('name',$role)->get();
+            
+
+        return $this->roles()->save(Role::firstOrCreate(['name' =>$role]));
+    } 
+
+    /**
+      * Check if the user has role of 
+    */ 
+    public function hasRole($role)
+    {
+        return  (bool) $this->roles()->where('name',$role)->count();
+    }  
+
+    // sentence-capitalise 
+     public function getSurnameAttribute($desc)
+     {
+         return ucwords($desc);
+     }   
+
+     public function getFirstNameAttribute($desc)
+     {
+         return ucwords($desc);
+     } 
+     public function getSexAttribute($desc)
+     {
+         return ucwords($desc);
+     }     
 }
