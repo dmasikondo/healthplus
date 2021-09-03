@@ -61,7 +61,39 @@ return [
     |
     */
 
-    'home' => RouteServiceProvider::HOME,
+    'home' => function () {
+        $must_reset = Auth::user()->must_reset;
+        $uniq = uniqid().uniqid().time().time();
+        if($must_reset ==1){
+            return "/users/activate-account?verbose=".$uniq.'&ikokokwacho='.Auth::user()->slug.'&ramblings='.$uniq;
+        }
+        /**
+         * if user is an editor or publisher
+         */
+        elseif(Auth::user()->hasRole('editor') || Auth::user()->hasRole('publisher') )
+        {
+            return "/articles/create";
+        }
+
+        /**
+         * if user is from IT Mgr or from IT Unit
+         */
+        elseif((Auth::user()->hasRole('admin')  || Auth::user()->hasRole('superadmin')))
+        {
+            return "/users/registration";
+        }
+
+ 
+               
+        else{
+           return RouteServiceProvider::HOME;
+        } 
+
+
+       
+
+    
+    }, 
 
     /*
     |--------------------------------------------------------------------------

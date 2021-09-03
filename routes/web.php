@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +17,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+})->name('dashboard');
+
+
+
+Route::group(['middleware' => ['auth:sanctum','prevent-back-history','activate']], function(){
+    Route::get('/users/registration', [UserController::class, 'create'])->name('user-registration');
+    Route::post('/users/registration', [UserController::class, 'store']);
+    Route::get('/articles/create', [ArticleController::class, 'create'])->name('article-create');
+    
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::get('/users/activate-account',[UserController::class, 'activate'])->name('account-activation');
+Route::put('/users/activate-account',[UserController::class, 'activation']);
+Route::get('/articles', [ArticleController::class, 'create'])->name('articles');
