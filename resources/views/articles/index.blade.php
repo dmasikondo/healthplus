@@ -32,7 +32,17 @@
                 </div>
 
                 <div class="{{-- max-h-32 --}}">
-                    <a href="/{{$article->filePath}}" class="h-12"><img src="/{{$article->filePath}}" alt=""></a>
+                 @if($article->isImage())
+                    <a href="/{{$article->filePath}}"><img src="/{{$article->filePath}}" alt=""  class="w-48"></a>
+               
+        {{-- file is a video  --}}
+            @elseif($article->isVideo())
+                <video controls="" autoplay="" width="320" height="240" name="media"controls onclick="this.paused ? this.play() : this.pause();"> 
+                  <source src="/{{$article->filePath}}" type="video/mp4">
+                </video> 
+{{-- <video controls  name="media"><source src="/storage/uploaded-files/6gau1ahtNyw4X4Id4jp1fvhjm6x2wgVi43dy8Kaw.mp4" type="video/mp4"></video> --}}
+{{-- <video controls="" autoplay="" name="media"><source src="/storage/uploaded-files/6gau1ahtNyw4X4Id4jp1fvhjm6x2wgVi43dy8Kaw.mp4" type="video/mp4"></video>                 --}}
+            @endif                   
                 </div> 
             </div>
         @endforeach

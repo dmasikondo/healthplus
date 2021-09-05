@@ -89,8 +89,8 @@
     <div class="flex items-center text-green-400 justify-between py-6 px-4 border-t">        
 
       <div>
-        <button type="submit" class="inline px-4 py-3 rounded-full font-bold text-white bg-green-300 hover:bg-gray-200 cursor-pointer" {>
-          Create Question
+        <button type="submit" class="inline px-4 py-3 rounded-full font-bold text-white bg-green-300 hover:bg-yellow-300 cursor-pointer" {>
+          Create Quiz Question No. {{$quizCount + 1}}
         </button>
         <div>
             <span wire:loading>

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Quiz;
 
 use Livewire\Component;
 use Illuminate\Support\Str;
+use App\Models\Quiz;
 use Auth;
 
 class Create extends Component
@@ -14,6 +15,7 @@ class Create extends Component
     public $choice2;
     public $instruction;
     public $options=[]; 
+    public $quizCount;
 
      protected function resetForm()
     {
@@ -45,6 +47,10 @@ class Create extends Component
 
             session()->flash('message', 'Your quiz question was successfully created');      
 
+    }
+    public function mount()
+    {
+        $this->quizCount = Quiz::count();
     }
 
     public function render()

@@ -31,23 +31,11 @@ class Create extends Component
     public function createArticle()
     {        
         $validateData =$this->validate([
-            'fileName'=>'nullable|mimes:jpg,gif,jpeg,png,pdf|max:2048',
+            'fileName'=>'nullable|mimes:jpg,gif,jpeg,png,mp4,aac,ogg,mov,m4a,opus,amr,wma,qt',
             'description'=>'required',
             'title'=>'required',
             'category'=>'required',
-            ],
-                
-                [
-                    'fileName.mimes:pdf,jpg,gif,jpeg,png' => 'The file must be 
-                    in the format: pdf, jpg, gif, jpeg, png',
-                ], 
-                [
-                    'fileName.max' => 'The selected file size must not exceed 2 MB',
-                ],     
-                [
-                    'comment.required_without:fileName' => 'You can not submit an empty message',
-                ], 
-           
+            ],          
 
         );
         /**
@@ -65,6 +53,7 @@ class Create extends Component
        
             $this->resetValidation();
             $this->resetForm();
+            $this->iteration++;
 
             session()->flash('message', 'Your article was successfully created');  
     }    

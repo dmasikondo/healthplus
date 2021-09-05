@@ -65,7 +65,7 @@
         {{-- file input and submit --}}
         <div x-data="{fileSelected: true}" x-on:livewire-upload-finish="fileSelected = true" class="border-b-4 pb-4 space-y-4">
 
-            <input id="upload{{ $iteration }}"  type="file" wire:model.defer="fileName" accept="image/*,.pdf" wire:click="clearErrors" {{-- id="{{$randomu}}{{$ayd}} --}}
+            <input id="upload{{ $iteration }}"  type="file" wire:model.defer="fileName" accept="image/*,video/*" wire:click="clearErrors" {{-- id="{{$randomu}}{{$ayd}} --}}
             class="text-xs"/>  
              <p wire:loading.remove>
                 @error('fileName')
