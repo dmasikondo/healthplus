@@ -42,7 +42,7 @@
                <div class="my-20 py-24">
                     <div class="space-y-4 font-semibold traking-wide">
                         <x-session-warning/>
-                        <h1 class="text-green-900 text-6xl ">Enjoy</h1>
+                        <h1 class="text-green-900 text-6xl ">Facilitate</h1>
                         <h2 class="text-5xl ">A Healthy Life Style</h2>
                     </div>
                     <div class="mb-40 mt-8 py-2 px-6 bg-white inline-block border border-green-900 text-xl text-center hover:bg-gray-100">
@@ -86,12 +86,12 @@
                     <div class="absolute inset-0 bg-gradient-to-r from-green-900 to-gray-700 {{-- transform -skew-y-3 --}}transform -skew-y-3 -rotate-6  shadow-lg rounded-3xl -translate-y-6"></div>
                     <div class="relative">
                         <div id="how" class="p-6 bg-white shadow-lg rounded-xl">
-                            <h3 class="text-4xl font-extrabold text-green-900 py-4"><a name="how">How to Maintain <strong class="text-gray-700"> A health lifestyle when living with HIV </strong></a></h3>   
+                            <h3 class="text-4xl font-extrabold text-green-900 py-4"><a name="how">Create and Maintain <strong class="text-gray-700"> Awesome articles on tackling HIV: </strong></a></h3>   
                             <ul type="square" class="space-y-4 pt-8 pb-16">
                                 <li> >> <a href="/register" class="text-green-900 hover:text-green-500 hover:bg-gray-100">Anonymously Register</a> with us and access specialised support services</li>                                
                                 <li> >> Prevent Reinfection</li>
                                 <li> >> Adherance to Treatment</li>      
-                                <li> >> Monitor your CD4 count</li>
+                                <li> >> Monitoring CD4 count</li>
                                 <li> >> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum, adipisci.</li>
                                 <li> >> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum, adipisci.</li>
                                 <li> >> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum, adipisci.</li>
