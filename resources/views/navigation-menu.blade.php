@@ -11,11 +11,32 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+
+                <div class="space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('articles') }}" :active="request()->routeIs('articles')||request()->routeIs('articles-create')">
+                        {{ __('Articles') }}
                     </x-jet-nav-link>
-                </div>
+                </div>  
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('prevention') }}" :active="request()->routeIs('prevention')">
+                        {{ __('Prevention') }}
+                    </x-jet-nav-link>
+                </div>  
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('treatment') }}" :active="request()->routeIs('treatment')">
+                        {{ __('Treatment') }}
+                    </x-jet-nav-link>
+                </div>  
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('pmtct') }}" :active="request()->routeIs('pmtct')">
+                        {{ __('PMTCT') }}
+                    </x-jet-nav-link>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('quizzes') }}" :active="request()->routeIs('quizzes-create')||request()->routeIs('quizzes')">
+                        {{ __('Quiz') }}
+                    </x-jet-nav-link>
+                </div>                    
+                </div>                   
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -73,6 +94,7 @@
                 <div class="ml-3 relative">
                     <x-jet-dropdown align="right" width="48">
                         <x-slot name="trigger">
+                        @auth
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                 <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
                                     <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->first_name }} {{ Auth::user()->surname }}" />
@@ -88,6 +110,7 @@
                                     </button>
                                 </span>
                             @endif
+                        @endauth
                         </x-slot>
 
                         <x-slot name="content">
@@ -144,7 +167,9 @@
         </div>
 
         <!-- Responsive Settings Options -->
+
         <div class="pt-4 pb-1 border-t border-gray-200">
+        @auth
             <div class="flex items-center px-4">
                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                     <div class="flex-shrink-0 mr-3">
@@ -157,7 +182,7 @@
                     <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
                 </div>
             </div>
-
+        @endauth
             <div class="mt-3 space-y-1">
                 <!-- Account Management -->
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">

@@ -6,7 +6,7 @@
         <x-session-message/>
         <x-session-warning/>
         <x-jet-validation-errors class="mb-4" />
-        <div class="fixed inset-0 z-0 hidden md:block" style="z-index: 0;">
+        <div class="fixed inset-0 z-0 hidden lg:block" style="z-index: 0;">
             <img  src="/storage/images/wave.png" >
         </div>
         

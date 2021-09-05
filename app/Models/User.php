@@ -91,6 +91,16 @@ class User extends Authenticatable
         return  (bool) $this->roles()->where('name',$role)->count();
     }  
 
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
+    public function quizzes()
+    {
+        return $this->hasMany(Quiz::class);
+    }    
+
     // sentence-capitalise 
      public function getSurnameAttribute($desc)
      {

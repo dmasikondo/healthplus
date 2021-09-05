@@ -6,7 +6,7 @@
 
         <x-jet-validation-errors class="mb-4" />
 
-        <img class="fixed inset-0 -z-10 hidden md:block" src="/storage/images/wave.png" >
+        <img class="fixed inset-0 -z-10 hidden lg:block" src="/storage/images/wave.png" >
         <div class="{{-- flex flex-end items-center --}}">
             {{-- <img class="w-1/2" src="/storage/images/bg.svg"> --}}
         </div>  

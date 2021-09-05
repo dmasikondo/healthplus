@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\QuizController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +25,16 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth:sanctum','prevent-back-history','activate']], function(){
     Route::get('/users/registration', [UserController::class, 'create'])->name('user-registration');
     Route::post('/users/registration', [UserController::class, 'store']);
-    Route::get('/articles/create', [ArticleController::class, 'create'])->name('article-create');
+    Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles-create');
+    Route::get('/quizzes/create', [QuizController::class, 'create'])->name('quizzes-create');
     
 });
 
 Route::get('/users/activate-account',[UserController::class, 'activate'])->name('account-activation');
 Route::put('/users/activate-account',[UserController::class, 'activation']);
-Route::get('/articles', [ArticleController::class, 'create'])->name('articles');
+Route::get('/articles', [ArticleController::class, 'index'])->name('articles');
+Route::get('/articles/prevention', [ArticleController::class, 'prevention'])->name('prevention');
+Route::get('/articles/treatment', [ArticleController::class, 'treatment'])->name('treatment');
+Route::get('/articles/pmtct', [ArticleController::class, 'pmtct'])->name('pmtct');
+
+Route::get('/quizzes', [QuizController::class, 'index'])->name('quizzes');
