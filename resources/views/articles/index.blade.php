@@ -37,11 +37,9 @@
                
         {{-- file is a video  --}}
             @elseif($article->isVideo())
-                <video controls="" autoplay="" width="320" height="240" name="media"controls onclick="this.paused ? this.play() : this.pause();"> 
-                  <source src="/{{$article->filePath}}" type="video/mp4">
+                <video controls="" width="320" height="240" name="media" onclick="this.paused ? this.play() : this.pause();"> 
+                  <source src="/{{$article->filePath}}">
                 </video> 
-{{-- <video controls  name="media"><source src="/storage/uploaded-files/6gau1ahtNyw4X4Id4jp1fvhjm6x2wgVi43dy8Kaw.mp4" type="video/mp4"></video> --}}
-{{-- <video controls="" autoplay="" name="media"><source src="/storage/uploaded-files/6gau1ahtNyw4X4Id4jp1fvhjm6x2wgVi43dy8Kaw.mp4" type="video/mp4"></video>                 --}}
             @endif                   
                 </div> 
             </div>

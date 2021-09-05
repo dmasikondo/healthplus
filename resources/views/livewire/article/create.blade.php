@@ -44,7 +44,7 @@
             <x-form.input id="title" type="text" name="title" placeholder="Surname" wire:model.defer="title" required/> 
             <x-form.label for="title">Title</x-form.label>             
             <div class="absolute right-0 top-0 mt-6 mr-2">
-                <x-icon name="tag" class="h-6 w-6 text-green-600 hidden md:block" stroke-width="1"/>                           
+                <x-icon name="book-open" class="h-6 w-6 text-green-600 hidden md:block" stroke-width="1"/>                           
             </div>
             <p class="text-red-900 italic text-sm">@error('title') {{$message}} @enderror</p>                    
         </div> 
@@ -52,7 +52,7 @@
 
         <div class="ml-3 flex flex-col md:flex-row center my-4 gap-2 w-full">      
             <div class="flex-1 mt-4">
-                <textarea placeholder="You may leave this section blank" class="w-full text-xl resize-none outline-none h-32" wire:model.defer="description"></textarea>
+                <textarea placeholder="A helpful slightly detailed information here" class="w-full text-xl resize-none outline-none h-32" wire:model.defer="description"></textarea>
                  <p wire:loading.remove>
                     @error('description')
                         <span class="text-red-500 text-sm italic">{{ $message }}</span>
@@ -78,7 +78,7 @@
         </div>  
 
       <div>
-        <button type="submit" class="inline px-4 py-3 rounded-full font-bold text-white bg-green-300 hover:bg-gray-200 cursor-pointer" {>
+        <button type="submit" class="inline px-4 py-3 rounded-full font-bold text-white bg-green-300 hover:bg-yellow-300 cursor-pointer" {>
           Create Article
         </button>
         <div>

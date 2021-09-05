@@ -2124,10 +2124,6 @@ select {
 	--tw-text-opacity: 1;
 	color: rgba(4, 120, 87, var(--tw-text-opacity));
 }
-.text-yellow-500 {
-	--tw-text-opacity: 1;
-	color: rgba(245, 158, 11, var(--tw-text-opacity));
-}
 .text-indigo-200 {
 	--tw-text-opacity: 1;
 	color: rgba(199, 210, 254, var(--tw-text-opacity));
@@ -2484,9 +2480,9 @@ select {
 	--tw-text-opacity: 1;
 	color: rgba(107, 114, 128, var(--tw-text-opacity));
 }
-.focus\:text-yellow-600:focus {
+.focus\:text-yellow-400:focus {
 	--tw-text-opacity: 1;
-	color: rgba(217, 119, 6, var(--tw-text-opacity));
+	color: rgba(251, 191, 36, var(--tw-text-opacity));
 }
 .focus\:text-green-800:focus {
 	--tw-text-opacity: 1;
