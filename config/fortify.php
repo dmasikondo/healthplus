@@ -86,7 +86,8 @@ return [
  
                
         else{
-           return RouteServiceProvider::HOME;
+           //return RouteServiceProvider::HOME;
+            return"/articles";
         } 
 
 

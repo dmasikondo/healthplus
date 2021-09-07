@@ -2,17 +2,22 @@
     <x-jet-authentication-card>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
+            <p class="text-green-700 text-2xl font-extrabold pt-2">HealthPlus</p>
         </x-slot>
+
 
         <x-jet-validation-errors class="mb-4" />
 
-        <img class="fixed inset-0 -z-10 hidden lg:block" src="/storage/images/wave.png" >
+        {{-- <img class="fixed inset-0 -z-10 hidden lg:block" src="/storage/images/wave.png" > --}}
+        <div class="fixed inset-0 z-0 hidden lg:block" style="z-index: 0;">
+            <img  src="/storage/images/wave.png" >
+        </div>
         <div class="{{-- flex flex-end items-center --}}">
             {{-- <img class="w-1/2" src="/storage/images/bg.svg"> --}}
         </div>  
 
  
-    <div class="z-100">
+   {{--  <div class="z-100"> --}}
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
@@ -83,7 +88,7 @@
                 </div>
             @endif
 
-            <div class="flex items-center justify-end mt-4 z-100">
+            <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900 cursor-pointer" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
@@ -98,7 +103,7 @@
                 </x-jet-button>                
             </div>
         </form>
-    </div>    
+  {{--   </div>  --}}   
 
     </x-jet-authentication-card>
 </x-guest-layout>

@@ -128,5 +128,12 @@ if(strstr($mime, "video/")){
     {
         $ext  = pathinfo($this->filePath, PATHINFO_EXTENSION);
         return $ext;
-    }           
+    } 
+
+     public static function randomColor()
+     {
+        $colors = ['border-yellow-300','border-red-600', 'border-green-600',];
+        $randomised = array_rand($colors);
+        return $colors[$randomised];
+     }              
 }

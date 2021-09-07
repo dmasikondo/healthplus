@@ -38,6 +38,29 @@
                 {{ $slot }}
             </main>
         </div>
+        {{-- footer --}}
+        <div class="bg-green-900 py-4">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
+                    <div class="text-center text-sm text-gray-500 sm:text-left">
+                        <div class="flex items-center">
+
+                            <a href="#" class="ml-1 underline">
+                                Contact Us
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <p>&copy; {{date('Y')}} Min of Health & Child Care</p>
+                    </div>
+
+                    <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
+                        <a href="#">About Us</a>
+                    </div>
+                </div>                
+            </div>
+        </div>
+        {{-- ./footer --}}
 
         @stack('modals')
 

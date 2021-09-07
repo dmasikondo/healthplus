@@ -18,6 +18,11 @@ class ArticleController extends Controller
         return view('articles.create');
     }
 
+    public function show(Article $article)
+    {
+        return view('articles.show', compact('article'));
+    }
+
     public function prevention()
     {
         $articles = Article::where('category','prevention')->latest()->get();

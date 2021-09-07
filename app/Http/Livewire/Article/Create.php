@@ -56,7 +56,15 @@ class Create extends Component
             $this->iteration++;
 
             session()->flash('message', 'Your article was successfully created');  
-    }    
+    }   
+
+    public function editArticle($slug)
+    {
+        $article = Article::where('slug',$slug)->first();
+        $this->title = $article->title;
+        $this->category =$article->category;
+        $this->description =$article->description;
+    } 
     public function render()
     {
         return view('livewire.article.create');

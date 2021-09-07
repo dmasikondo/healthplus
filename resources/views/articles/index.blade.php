@@ -17,7 +17,7 @@
                         </a>
                     </p>
                     <h1 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">
-                        {{$article->title}}
+                        <a href="/articles/{{$article->slug}}" class="text-gray-400 hover:text-green-500">{{$article->title}}</a>                        
                     </h1>
                     <p class="text-sm md:text-base font-normal text-gray-600">
                         Published {{Carbon\Carbon::parse($article->created_at)->format('D d M Y h:i:s')}}

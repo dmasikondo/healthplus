@@ -2,6 +2,7 @@
     <x-jet-authentication-card>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
+            <p class="text-green-700 text-2xl font-extrabold pt-2">HealthPlus</p>
         </x-slot>
         <x-session-message/>
         <x-session-warning/>
