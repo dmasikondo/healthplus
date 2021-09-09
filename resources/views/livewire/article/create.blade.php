@@ -61,11 +61,20 @@
             </div>
         </div>
 
+        <div class="my-4 relative flex-1">
+            <x-form.input id="link" type="text" name="link" placeholder="Url link" wire:model.defer="link" /> 
+            <x-form.label for="link">Url link</x-form.label>             
+            <div class="absolute right-0 top-0 mt-6 mr-2">
+                <x-icon name="link" class="h-6 w-6 text-green-600 hidden md:block" stroke-width="1"/>                           
+            </div>
+            <p class="text-red-900 italic text-sm">@error('link') {{$message}} @enderror</p>                    
+        </div>         
+@if(is_null($link))
     <div class="flex items-center text-green-400 justify-between py-6 px-4 border-t">    
         {{-- file input and submit --}}
         <div x-data="{fileSelected: true}" x-on:livewire-upload-finish="fileSelected = true" class="border-b-4 pb-4 space-y-4">
 
-            <input id="upload{{ $iteration }}"  type="file" wire:model.defer="fileName" accept="image/*,video/*" wire:click="clearErrors" {{-- id="{{$randomu}}{{$ayd}} --}}
+            <input id="upload{{ $iteration }}"  type="file" wire:model.defer="fileName" {{-- accept="image/*,video/*,pdf" --}} wire:click="clearErrors" {{-- id="{{$randomu}}{{$ayd}} --}}
             class="text-xs"/>  
              <p wire:loading.remove>
                 @error('fileName')
@@ -75,7 +84,8 @@
            <div x-show="isUploading" style="display: none;">
                 <progress max="100" x-bind:value="progress"></progress>
             </div>             
-        </div>  
+        </div> 
+@endif 
 
       <div>
         <button type="submit" class="inline px-4 py-3 rounded-full font-bold text-white bg-green-300 hover:bg-yellow-300 cursor-pointer" {>

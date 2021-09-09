@@ -15,6 +15,7 @@ class Create extends Component
     public $category;
     public $description;
     public $url;
+    public $link = NULL;
     public $iteration=1;
     public $randomu =1;
     public $files;
@@ -22,7 +23,7 @@ class Create extends Component
 
     protected function resetForm()
     {
-        $this->reset('fileName','title','category','description','url');
+        $this->reset('fileName','title','category','description','url','link');
     }
     public function clearErrors()
     {
@@ -31,10 +32,11 @@ class Create extends Component
     public function createArticle()
     {        
         $validateData =$this->validate([
-            'fileName'=>'nullable|mimes:jpg,gif,jpeg,png,mp4,aac,ogg,mov,m4a,opus,amr,wma,qt',
+            'fileName'=>'nullable|mimes:jpg,gif,jpeg,png,mp4,aac,ogg,mov,m4a,opus,amr,wma,qt,pdf',
             'description'=>'required',
             'title'=>'required',
             'category'=>'required',
+            'link' =>'nullable',
             ],          
 
         );
@@ -45,17 +47,19 @@ class Create extends Component
             $url = $this->fileName->store('uploaded-files','public');
         }
         else{
-            $url = '';
+            $url = NULL;
         }
+  
             Auth::user()->articles()->create(['filePath' =>'storage/'.$url, 'title' =>$this->title,/*'user_id' => Auth::user()->id,*/
                 'category'=>$this->category, 'description'=>$this->description,'slug'=>$this->title.uniqid(),
+                'link'=>$this->link,
             ]);
        
             $this->resetValidation();
             $this->resetForm();
             $this->iteration++;
 
-            session()->flash('message', 'Your article was successfully created');  
+            session()->flash('message', 'Your article was successfully created. You can create another article');  
     }   
 
     public function editArticle($slug)

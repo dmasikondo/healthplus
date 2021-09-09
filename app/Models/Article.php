@@ -105,6 +105,15 @@ if(strstr($mime, "video/")){
         }
     } 
 
+    public function isPdf()
+    {
+        //$ext  = pathinfo($this->url, PATHINFO_EXTENSION);
+        if($this->checkExtension()=='pdf')
+        {
+            return true;
+        }
+    }     
+
     public function isVideo()
     {
         //$ext  = pathinfo($this->url, PATHINFO_EXTENSION);

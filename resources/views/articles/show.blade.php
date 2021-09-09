@@ -26,9 +26,9 @@
                             <span  class="flex-1">Written By {{$article->user->first_name}} {{$article->user->surname}} </span>                              
                             <span  class="flex-justify-end">Last Updated {{$article->updated_at->diffForHumans()}}</span>
                         </p>
-                        <p class="flex-justify-end">
+                       {{--  <p class="flex-justify-end">
                             <x-icon name="dots-horizontal"/>
-                        </p>                        
+                        </p> --}}                        
                     </div>
                     <div class="">
                        {!! nl2br(ucfirst($article->description)) !!}
@@ -42,6 +42,17 @@
                         <video controls=""  name="media" onclick="this.paused ? this.play() : this.pause();"> 
                           <source src="/{{$article->filePath}}">
                         </video> 
+                    @elseif($article->isPdf())
+                    
+                        <div class="mt-4">
+                        
+                            <iframe width="" height="500" class="w-full" 
+                            {{-- src="https://youtube.com/embed/bGS5sdmsUag"> --}}
+                            src="/{{$article->filePath}}">
+                            </iframe>
+                        
+                        </div>
+                       
                     @endif                   
                     </div> 
                 </div>

@@ -7,6 +7,7 @@
 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">                     
      <div class="mt-4 mx-4">
       <div class="max-w-7xl overflow-hidden rounded-lg shadow-xs">
+    @if($articles->count()>0)
         <div class="grid md:grid-cols-2 md:gap-4 text-gray-900 my-4 pr-6">
     @foreach($articles as $article)
             <div class=" px-4 md:px-6 text-xl text-gray-800 leading-normal" style="font-family:Georgia,serif;">
@@ -39,12 +40,28 @@
             @elseif($article->isVideo())
                 <video controls="" width="320" height="240" name="media" onclick="this.paused ? this.play() : this.pause();"> 
                   <source src="/{{$article->filePath}}">
-                </video> 
+                </video>
+            @elseif($article->isPdf())
+                <iframe width="420" height="315"
+                {{-- src="https://youtube.com/embed/bGS5sdmsUag"> --}}
+                src="/{{$article->filePath}}">
+                </iframe>
+            @else
+                <iframe width="420" height="315"
+                {{-- src="https://youtube.com/embed/bGS5sdmsUag"> --}}
+                src="{{$article->link}}">
+                </iframe>
+                             
             @endif                   
                 </div> 
             </div>
         @endforeach
         </div>
+    @else
+        <div class="my-4">
+            <h2>You currently do not have any articles. Please <a href="/articles/create" class="text-gray-400 hover:text-green-500">create </a>something amazing for your readers</h2>
+        </div>
+    @endif
       </div>
      </div>
  </div>
