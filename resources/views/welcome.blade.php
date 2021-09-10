@@ -42,8 +42,8 @@
                <div class="my-20 py-24">
                     <div class="space-y-4 font-semibold traking-wide">
                         <x-session-warning/>
-                        <h1 class="text-green-900 text-6xl ">Facilitate</h1>
-                        <h2 class="text-5xl ">A Healthy Life Style</h2>
+                        <h1 class="text-green-900 text-6xl ">HealthPlus App</h1>
+                        <h2 class="text-5xl ">Facilitating a Healthy Life Style</h2>
                     </div>
                     <div class="mb-40 mt-8 py-2 px-6 bg-white inline-block border border-green-900 text-xl text-center hover:bg-gray-100">
                         <button class="">
@@ -88,14 +88,61 @@
                         <div id="how" class="p-6 bg-white shadow-lg rounded-xl">
                             <h3 class="text-4xl font-extrabold text-green-900 py-4"><a name="how">Create and Maintain <strong class="text-gray-700"> Awesome articles on tackling HIV: </strong></a></h3>   
                             <ul type="square" class="space-y-4 pt-8 pb-16">
-                                <li> >> <a href="/register" class="text-green-900 hover:text-green-500 hover:bg-gray-100">Anonymously Register</a> with us and access specialised support services</li>                                
-                                <li> >> Prevent Reinfection</li>
-                                <li> >> Adherance to Treatment</li>      
-                                <li> >> Monitoring CD4 count</li>
-                                <li> >> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum, adipisci.</li>
-                                <li> >> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum, adipisci.</li>
-                                <li> >> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum, adipisci.</li>
-                                <li> >> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum, adipisci.</li>
+                                {{-- <li> >> <a href="/register" class="text-green-900 hover:text-green-500 hover:bg-gray-100">Anonymously Register</a> with us and access specialised support services</li> --}}                                
+                                <li>
+                                    <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">  
+                                        <x-icon name="check-circle" class="w-4 h-4 text-green-700 inline"/> 
+                                    </span>
+                                        Prevention of mother to child transmission
+                                </li>
+                                <li>
+                                    <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">  
+                                        <x-icon name="check-circle" class="w-4 h-4 text-green-700 inline"/> 
+                                    </span>
+                                        Prevention of reinfection 
+                                </li>
+                                <li>
+                                    <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">  
+                                        <x-icon name="check-circle" class="w-4 h-4 text-green-700 inline"/>
+                                        </span> 
+                                        Adherance to treatment
+                                </li>      
+                                <li>
+                                    <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">  
+                                        <x-icon name="check-circle" class="w-4 h-4 text-green-700 inline"/> 
+                                    </span>
+                                        Monitoring CD4 count
+                                </li>
+                                <li>
+                                    <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">  
+                                        <x-icon name="check-circle" class="w-4 h-4 text-green-700 inline"/> 
+                                    </span>
+                                        What Hiv is really all about
+                                </li>
+                                <li>
+                                    <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">  
+                                        <x-icon name="check-circle" class="w-4 h-4 text-green-700 inline"/> 
+                                    </span>
+                                        The immune system
+                                </li>
+                                <li>
+                                    <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">  
+                                        <x-icon name="check-circle" class="w-4 h-4 text-green-700 inline"/> 
+                                    </span>
+                                        Hiv Fact Sheets
+                                </li>
+                                <li>
+                                    <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">  
+                                        <x-icon name="check-circle" class="w-4 h-4 text-green-700 inline"/> 
+                                    </span>
+                                        Captivative animations
+                                </li>
+                                <li>
+                                    <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">  
+                                        <x-icon name="check-circle" class="w-4 h-4 text-green-700 inline"/> 
+                                    </span>
+                                        Current researches
+                                </li>
 
                             </ul>                 
                         </div>                        
@@ -103,7 +150,7 @@
                 </div>
 
                 <div class=" md:flex-1 justify-right ml-4" style="margin-left: 25%;">
-                    <img class="rounded-full border-green-900 border-8  p-1 shadow-2xl" src="/storage/images/happy_couple.jpg" alt="happy couple" style="width: 36rem; height: 36rem;">
+                    <img class="rounded-full border-green-900 border-8  p-1 shadow-2xl " src="/storage/images/happy_couple2.jpg" alt="happy couple" style="width: 38em; height: 38em;">
                 </div>
             </div>
         </div>             
