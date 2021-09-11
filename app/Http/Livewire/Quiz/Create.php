@@ -16,10 +16,13 @@ class Create extends Component
     public $instruction;
     public $options=[]; 
     public $quizCount;
+    public $quiz;
+    public $quiz_id;
+    public $slug;
 
      protected function resetForm()
     {
-        $this->reset('question','answer','choice1','choice2','instruction','options');
+        $this->reset('question','answer','choice1','choice2','instruction','options','quiz');
     }
     public function clearErrors()
     {
@@ -35,22 +38,54 @@ class Create extends Component
             'choice2'=>'required',
             'instruction'=>'required',
             ]);
-        $slug =Str::slug($this->question);
-        $this->options =array($this->answer,$this->choice1,$this->choice2);
+            if(empty($this->quiz))
+            {
+               $this->slug =Str::slug($this->question).uniqid();
+            }
+            else{
+                $this->slug = $this->quiz->slug;  
+            }
         
-            Auth::user()->quizzes()->create(['question' =>$this->question, 'answer' =>$this->answer,
-                'allChoices'=>$this->options, 'slug'=>$slug.uniqid(),'instructionText'=>$this->instruction,
+            $this->options =array($this->answer,$this->choice1,$this->choice2);
+        
+            Auth::user()->quizzes()->updateOrCreate(['id'=>$this->quiz_id],['question' =>$this->question, 'answer' =>$this->answer,
+                'allChoices'=>$this->options, 'slug'=>$this->slug,'instructionText'=>$this->instruction,
             ]);
        
             $this->resetValidation();
             $this->resetForm();
+        
+            if(empty($this->quiz_id))
+            {
+               session()->flash('message', 'Your quiz question was successfully created');  
+               $this->quizCount=$this->quizCount+1;
+            }
+            else{
+                session()->flash('message', 'Your quiz question was successfully updated');  
 
-            session()->flash('message', 'Your quiz question was successfully created');      
+            }
+
+            return redirect('/quizzes');
+            
+                 
 
     }
     public function mount()
     {
         $this->quizCount = Quiz::count();
+        /**
+         * if quiz model is not empty (editing or deleting)
+         */
+        if(!empty($this->quiz))
+        {
+            $this->question = $this->quiz->question;
+            $this->answer = $this->quiz->answer;
+            $this->choice1 = $this->quiz->allChoices[1];
+            $this->choice2 = $this->quiz->allChoices[2];
+            $this->instruction = $this->quiz->instructionText;  
+            $this->quiz_id =$this->quiz->id;          
+        }
+
     }
 
     public function render()

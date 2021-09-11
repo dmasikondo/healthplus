@@ -17,4 +17,9 @@ class QuizController extends Controller
     {
         return view('quizzes.create');
     }
+
+    public function edit(Quiz $quiz)
+    {
+        return view('quizzes.edit',compact('quiz'));
+    }
 }
