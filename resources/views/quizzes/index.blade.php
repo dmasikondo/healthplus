@@ -7,6 +7,10 @@
 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">                     
      <div class="mt-4 mx-4">
       <div class="max-w-7xl overflow-hidden rounded-lg shadow-xs">
+      @php
+        $random =time().time();
+      @endphp                      
+      @livewire('quiz.delete', key($random))         
         <x-session-message/>
         <div class="grid md:grid-cols-2 md:gap-4 text-gray-900 my-4 pr-6">
         @if($quizzes->count()>0)            
@@ -30,8 +34,8 @@
                         <button title="Edit" onclick="window.location.href='/quizzes/{{$quiz->slug}}/edit'"  class="text-green-500 hover:text-green-700">
                             <x-icon name="edit" class="text-green-500 hover:text-green-700" stroke-width="2"/> Edit                                       
                         </button>
-                        <button title="Delete Quiz"   class="text-red-500 hover:text-red-700"  onclick="confirm('All the details of the quiz question will be lost, Are you sure you want to delete quiz question?') || event.stopImmediatePropagation()"  wire:click="deleteQuiz({{ $quiz->id }})">
-                            <x-icon name="user-remove"/>
+                        <button title="Delete Quiz"   class="text-red-500 hover:text-red-700" onclick="window.livewire.emitTo('quiz.delete','deleteQuiz','{{$quiz->slug}}')">
+                            <x-icon name="user-remove"/> Delete
                         </button>
                     </h4>                                           
                 </div>

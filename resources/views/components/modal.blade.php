@@ -25,7 +25,7 @@
 
                 <!-- Title / Close-->
             <div class="flex items-center justify-between mt-12">
-                <h2 class="flex-auto justify-center mr-3 text-black max-w-none mt-12 mb-4 border-b-4 border-indigo-500 text-3xl text-center">{{$title}}</h2>
+                <h2 class="flex-auto justify-center mr-3 text-black max-w-none mt-12 mb-4 border-b-4 border-yellow-300 text-3xl text-center">{{$title}}</h2>
 
                 <button type="button" class="z-50 cursor-pointer text-red-600" @click="show = false">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
