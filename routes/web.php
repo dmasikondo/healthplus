@@ -34,7 +34,8 @@ Route::group(['middleware' => ['auth:sanctum','prevent-back-history','activate']
     Route::post('/users/registration', [UserController::class, 'store']);
     Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles-create');
     Route::get('/articles/{article:slug}', [ArticleController::class, 'show'])->name('article');
+    Route::get('/articles/{article:slug}/edit', [ArticleController::class, 'edit'])->name('article-edit');
     Route::get('/quizzes/create', [QuizController::class, 'create'])->name('quizzes-create');
-    Route::get('/quizzes/{quiz:slug}/edit', [QuizController::class, 'edit'])->name('quizzes-create');
+    Route::get('/quizzes/{quiz:slug}/edit', [QuizController::class, 'edit'])->name('quizzes-edit');
     
 });

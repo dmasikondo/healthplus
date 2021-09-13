@@ -1153,6 +1153,10 @@ select {
 	margin-top: 1.5rem;
 	margin-bottom: 1.5rem;
 }
+.mx-8 {
+	margin-left: 2rem;
+	margin-right: 2rem;
+}
 .my-20 {
 	margin-top: 5rem;
 	margin-bottom: 5rem;
@@ -1226,8 +1230,14 @@ select {
 .mb-4 {
 	margin-bottom: 1rem;
 }
+.ml-16 {
+	margin-left: 4rem;
+}
 .-mt-px {
 	margin-top: -1px;
+}
+.mt-12 {
+	margin-top: 3rem;
 }
 .-mt-4 {
 	margin-top: -1rem;
@@ -1237,9 +1247,6 @@ select {
 }
 .mb-40 {
 	margin-bottom: 10rem;
-}
-.mt-12 {
-	margin-top: 3rem;
 }
 .ml-auto {
 	margin-left: auto;
@@ -1574,6 +1581,9 @@ select {
 .justify-self-end {
 	justify-self: end;
 }
+.overflow-auto {
+	overflow: auto;
+}
 .overflow-hidden {
 	overflow: hidden;
 }
@@ -1708,17 +1718,21 @@ select {
 	--tw-border-opacity: 1;
 	border-color: rgba(185, 28, 28, var(--tw-border-opacity));
 }
+.border-yellow-300 {
+	--tw-border-opacity: 1;
+	border-color: rgba(252, 211, 77, var(--tw-border-opacity));
+}
 .border-green-900 {
 	--tw-border-opacity: 1;
 	border-color: rgba(6, 78, 59, var(--tw-border-opacity));
 }
-.border-indigo-500 {
-	--tw-border-opacity: 1;
-	border-color: rgba(99, 102, 241, var(--tw-border-opacity));
-}
 .border-red-500 {
 	--tw-border-opacity: 1;
 	border-color: rgba(239, 68, 68, var(--tw-border-opacity));
+}
+.border-green-100 {
+	--tw-border-opacity: 1;
+	border-color: rgba(209, 250, 229, var(--tw-border-opacity));
 }
 .bg-white {
 	--tw-bg-opacity: 1;
@@ -1855,6 +1869,9 @@ select {
 .p-4 {
 	padding: 1rem;
 }
+.p-3 {
+	padding: 0.75rem;
+}
 .p-1 {
 	padding: 0.25rem;
 }
@@ -1972,6 +1989,9 @@ select {
 }
 .pr-6 {
 	padding-right: 1.5rem;
+}
+.pr-3 {
+	padding-right: 0.75rem;
 }
 .pt-8 {
 	padding-top: 2rem;
@@ -2180,6 +2200,10 @@ select {
 	--tw-text-opacity: 1;
 	color: rgba(120, 53, 15, var(--tw-text-opacity));
 }
+.text-black {
+	--tw-text-opacity: 1;
+	color: rgba(0, 0, 0, var(--tw-text-opacity));
+}
 .text-green-900 {
 	--tw-text-opacity: 1;
 	color: rgba(6, 78, 59, var(--tw-text-opacity));
@@ -2191,10 +2215,6 @@ select {
 .text-yellow-200 {
 	--tw-text-opacity: 1;
 	color: rgba(253, 230, 138, var(--tw-text-opacity));
-}
-.text-black {
-	--tw-text-opacity: 1;
-	color: rgba(0, 0, 0, var(--tw-text-opacity));
 }
 .text-blue-500 {
 	--tw-text-opacity: 1;
@@ -3029,6 +3049,12 @@ select {
 	.lg\:px-8 {
 		padding-left: 2rem;
 		padding-right: 2rem;
+	}
+}
+@media (min-width: 1280px) {
+
+	.xl\:col-span-1 {
+		grid-column: span 1 / span 1;
 	}
 }
 

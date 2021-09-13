@@ -23,6 +23,11 @@ class ArticleController extends Controller
         return view('articles.show', compact('article'));
     }
 
+    public function edit(Article $article)
+    {
+        return view('articles.edit',compact('article'));
+    }
+
     public function prevention()
     {
         $articles = Article::where('category','prevention')->latest()->get();

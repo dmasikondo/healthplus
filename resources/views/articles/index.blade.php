@@ -7,6 +7,9 @@
 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">                     
      <div class="mt-4 mx-4">
       <div class="max-w-7xl overflow-hidden rounded-lg shadow-xs">
+        <div class="my-1">
+          <x-session-message/>
+        </div>        
     @if($articles->count()>0)
         <div class="grid md:grid-cols-2 md:gap-4 text-gray-900 my-4 pr-6">
     @foreach($articles as $article)
@@ -20,13 +23,22 @@
                     <h1 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">
                         <a href="/articles/{{$article->slug}}" class="text-gray-400 hover:text-green-500">{{$article->title}}</a>                        
                     </h1>
+                    <h4 class="flex justify-end">
+                        <button title="Edit" onclick="window.location.href='/articles/{{$article->slug}}/edit'"  class="text-green-500 hover:text-green-700">
+                            <x-icon name="edit" class="text-green-500 hover:text-green-700 w-6 h-6" stroke-width="2"/> {{-- Edit --}}                                       
+                        </button>
+                        <button title="Delete Quiz"   class="text-red-500 hover:text-red-700" onclick="window.livewire.emitTo('article.delete','deleteArticle','{{$article->slug}}')">
+                            <x-icon name="trash" class="w-6 h-6"/> 
+                        </button>
+                    </h4>                     
                     <p class="text-sm md:text-base font-normal text-gray-600">
                         Published {{Carbon\Carbon::parse($article->created_at)->format('D d M Y h:i:s')}}
                     </p>
                     <p class="text-xs text-gray-800 flex flex-col md:flex-row">
                         <span  class="flex-1">Written By {{$article->user->first_name}} {{$article->user->surname}} </span>                              
                         <span  class="flex-justify-end">Last Updated {{$article->updated_at->diffForHumans()}}</span>
-                    </p>                        
+                    </p>  
+
                 </div>
                 <div class="">
                    {{Str::words($article->description, 40)}}

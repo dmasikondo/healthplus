@@ -11,11 +11,8 @@
       {{-- <i class="fas fa-times text-xl"></i> --}}
 
       <p class="inline hover:bg-green-100 px-4 py-3 rounded-full font-bold">
-        Create an Article
+        {{empty($article_id)? 'Create an article': 'Update article'}}
       </p>
-    </div>
-    <div class="my-1">
-      <x-session-message/>
     </div>
 
  <form wire:submit.prevent="createArticle" enctype="multipart/form-data">
@@ -62,14 +59,14 @@
         </div>
 
         <div class="my-4 relative flex-1">
-            <x-form.input id="link" type="text" name="link" placeholder="Url link" wire:model.defer="link" /> 
+            <x-form.input id="link" type="text" name="link" placeholder="Url link" wire:model.defer="link"/> 
             <x-form.label for="link">Url link</x-form.label>             
             <div class="absolute right-0 top-0 mt-6 mr-2">
                 <x-icon name="link" class="h-6 w-6 text-green-600 hidden md:block" stroke-width="1"/>                           
             </div>
             <p class="text-red-900 italic text-sm">@error('link') {{$message}} @enderror</p>                    
         </div>         
-@if(is_null($link))
+@if(empty($link) || is_null($link))
     <div class="flex items-center text-green-400 justify-between py-6 px-4 border-t">    
         {{-- file input and submit --}}
         <div x-data="{fileSelected: true}" x-on:livewire-upload-finish="fileSelected = true" class="border-b-4 pb-4 space-y-4">
@@ -88,8 +85,9 @@
 @endif 
 
       <div>
-        <button type="submit" class="inline px-4 py-3 rounded-full font-bold text-white bg-green-300 hover:bg-yellow-300 cursor-pointer" {>
-          Create Article
+        <button type="submit" class="inline px-4 py-3 rounded-full font-bold text-white bg-green-300 hover:bg-yellow-300 cursor-pointer" >
+            {{empty($article_id)? 'Create Aticle': 'Update Article'}}
+          
         </button>
         <div>
             <span wire:loading>
