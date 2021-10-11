@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Article;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Str;
 //use App\Models\File;
 use Auth;
 
@@ -21,6 +22,7 @@ class Create extends Component
     public $files;
     public $article;
     public $article_id;
+    public $slug;
     //public $files =[];
 
     protected function resetForm()
@@ -47,13 +49,20 @@ class Create extends Component
          */
         if(!empty($this->fileName)){            
             $url = $this->fileName->store('uploaded-files','public');
+            $url = '/storage/'.$url;
         }
         else{
             $url = NULL;
         }
-  
-            Auth::user()->articles()->updateOrCreate(['id'=>$this->article_id],['filePath' =>'storage/'.$url, 'title' =>$this->title,
-                'category'=>$this->category, 'description'=>$this->description,'slug'=>$this->title.uniqid(),
+        if(empty($this->article))
+        {
+           $this->slug =Str::slug($this->title).uniqid();
+        }
+        else{
+            $this->slug = $this->article->slug;  
+        }
+            Auth::user()->articles()->updateOrCreate(['id'=>$this->article_id],['filePath' =>$url, 'title' =>$this->title,
+                'category'=>$this->category, 'description'=>$this->description,'slug'=>$this->slug,
                 'link'=>$this->link,
             ]);
        
@@ -71,13 +80,6 @@ class Create extends Component
             return redirect('/articles');
     }   
 
-/*    public function editArticle($slug)
-    {
-        $article = Article::where('slug',$slug)->first();
-        $this->title = $article->title;
-        $this->category =$article->category;
-        $this->description =$article->description;
-    } */
 
     public function mount()
     {

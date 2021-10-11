@@ -13,6 +13,7 @@ class Delete extends Modal
     public $allChoices=[];
     public $created;
     public $quiz;
+    public $author;
     public function resetForm()
     {
         $this->resetErrorBag();
@@ -26,6 +27,8 @@ class Delete extends Modal
         $this->instructionText = $this->quiz->instructionText;
         $this->allChoices = $this->quiz->allChoices;
         $this->created = $this->quiz->created_at->diffForHumans();
+        $this->author = $this->quiz->user->first_name.' '.$this->quiz->user->surname;
+
 
 
     }   

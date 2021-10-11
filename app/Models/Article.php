@@ -144,5 +144,16 @@ if(strstr($mime, "video/")){
         $colors = ['border-yellow-300','border-red-600', 'border-green-600',];
         $randomised = array_rand($colors);
         return $colors[$randomised];
-     }              
+     } 
+
+     public function haslink()
+     {
+        if($this->link =='' || is_null($this->link))
+        {
+            return false;
+        }
+        else{
+            return true;
+        }
+     }             
 }

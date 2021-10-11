@@ -30,6 +30,7 @@
                             <x-icon name="dots-horizontal"/>
                         </p> --}}                        
                     </div>
+                    
                     <div class="">
                        {!! nl2br(ucfirst($article->description)) !!}
                     </div>

@@ -2,7 +2,7 @@
     <x-modal wire:model="show">   
         <!-- content -->
       <x-slot name="title">
-        {{$question}} 
+        {{$articleTitle}}  
       </x-slot>
       <div class="m-4 p-4">
          <div class="md:col-span-2 xl:col-span-1">
@@ -18,7 +18,7 @@
                 </div> --}}
              
                 <div class="bg-white p-2 rounded mt-1 border-b border-gray-100 ">
-                    Are you sure you want to delete this quiz question and all it's options?</div>
+                    Are you sure you want to delete this article resource?</div>
                 <div class="bg-white p-2 rounded mt-1 border-b border-gray-100">
                   Do  not delete if you <span class="text-green-700">are not sure</span> proceed only when you are sure <span class="text-red-700">To Delete</span>
 
