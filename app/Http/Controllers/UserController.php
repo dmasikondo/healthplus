@@ -83,12 +83,12 @@ class UserController extends Controller
         $this->validate(request(), [
         'first_name' => ['required', 'string', 'max:255','exists:users,first_name'],
         'surname' => ['required', 'string', 'max:255', Rule::exists('users')
-                ->where('first_name',request()->first_name)
                 ->where('slug',request()->checkit)],
         'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
         $user = User::where('slug',request()->checkit)->firstOrFail();
+        //dd($user);
         /**
          * if account is already active, do not activate
          */

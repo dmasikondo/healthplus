@@ -29,12 +29,12 @@
                                 </div>
 
                                 <div class="mt-4 relative flex-1">
-                                    <x-form.input id="second_name" type="text" name="second_name" placeholder="Second Name" value="{{old('second_name')}}" required/> 
-                                    <x-form.label for="second_name">Last Name</x-form.label>             
+                                    <x-form.input id="surname" type="text" name="surname" placeholder="Surname" value="{{old('surname')}}" required/> 
+                                    <x-form.label for="surname">Surname</x-form.label>             
                                     <div class="absolute right-0 top-0 mt-6 mr-2">
                                         <x-icon name="user-group" class="h-6 w-6 text-indigo-600 hidden lg:block" stroke-width="1"/>                           
                                     </div>
-                                    <p class="text-red-900 italic text-sm">@error('second_name') {{$message}} @enderror</p>                    
+                                    <p class="text-red-900 italic text-sm">@error('surname') {{$message}} @enderror</p>                    
                                 </div>   
                         </div>
 
