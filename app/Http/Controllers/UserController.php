@@ -14,6 +14,16 @@ use Illuminate\Validation\Rule;
 class UserController extends Controller
 {
     /**
+     * show all the users
+     */
+    public function index()
+    {
+        $roles = Role::orderBy('name')->get();
+        $users = User::orderBy('surname')->get();
+        return view('users.index', compact('roles','users'));
+    }
+
+    /**
      * Show the form for registering users
      * To Superadmin 
      */

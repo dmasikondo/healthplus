@@ -32,6 +32,7 @@ Route::get('/quizzes', [QuizController::class, 'index'])->name('quizzes');
 Route::group(['middleware' => ['auth:sanctum','prevent-back-history','activate']], function(){
     Route::get('/users/registration', [UserController::class, 'create'])->name('user-registration');
     Route::post('/users/registration', [UserController::class, 'store']);
+    Route::get('/users', [UserController::class, 'index']);
     Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles-create');
     Route::get('/articles/{article:slug}', [ArticleController::class, 'show'])->name('article');
     Route::get('/articles/{article:slug}/edit', [ArticleController::class, 'edit'])->name('article-edit');
