@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'activate' => \App\Http\Middleware\ActivateAMustResetAccount::class,        
         'prevent-back-history' => \App\Http\Middleware\PreventBackHistory::class,        
+        'suspended' => \App\Http\Middleware\AccountIsSuspended::class,        
     ];
 }

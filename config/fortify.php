@@ -63,7 +63,12 @@ return [
 
     'home' => function () {
         $must_reset = Auth::user()->must_reset;
+        $suspended = Auth::user()->is_suspended;
         $uniq = uniqid().uniqid().time().time();
+        if($suspended ==1)
+        {
+            return "/users/is-suspended";
+        }
         if($must_reset ==1){
             return "/users/activate-account?verbose=".$uniq.'&ikokokwacho='.Auth::user()->slug.'&ramblings='.$uniq;
         }

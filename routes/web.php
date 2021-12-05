@@ -19,7 +19,9 @@ use App\Http\Controllers\QuizController;
 Route::get('/', function () {
     return view('welcome');
 })->name('dashboard');
-
+Route::get('/user/profile', function () {
+    return view('/profile/show');
+})->middleware(['suspended']);
 
 Route::get('/users/activate-account',[UserController::class, 'activate'])->name('account-activation');
 Route::put('/users/activate-account',[UserController::class, 'activation']);
@@ -29,10 +31,11 @@ Route::get('/articles/treatment', [ArticleController::class, 'treatment'])->name
 Route::get('/articles/pmtct', [ArticleController::class, 'pmtct'])->name('pmtct');
 Route::get('/quizzes', [QuizController::class, 'index'])->name('quizzes');
 
-Route::group(['middleware' => ['auth:sanctum','prevent-back-history','activate']], function(){
+Route::group(['middleware' => ['auth:sanctum','prevent-back-history','suspended','activate','verified']], function(){
     Route::get('/users/registration', [UserController::class, 'create'])->name('user-registration');
     Route::post('/users/registration', [UserController::class, 'store']);
     Route::get('/users', [UserController::class, 'index']);
+    Route::get('/users/is-suspended', [UserController::class, 'redirectIfSuspended']);
     Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles-create');
     Route::get('/articles/{article:slug}', [ArticleController::class, 'show'])->name('article');
     Route::get('/articles/{article:slug}/edit', [ArticleController::class, 'edit'])->name('article-edit');

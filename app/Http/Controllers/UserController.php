@@ -112,6 +112,15 @@ class UserController extends Controller
          return redirect('/login') ;      
 
     }
+    /**
+     * redirect if the account has been suspended
+     */
+    public function redirectIfSuspended()
+    {
+        Auth::guard('web')->logout();  
+        session()->flash('warning',"This account is suspended. Please contact your administrator"); 
+        return view('/login'); 
+    }
 
 
 }
