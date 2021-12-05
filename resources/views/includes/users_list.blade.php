@@ -35,6 +35,10 @@
                       @foreach($user->roles as $role)
                       {{$role->name}}
                       @endforeach
+                      <span class="px-2 py-1 font-semibold leading-tight text-green-700 rounded-full cursor-pointer hover:bg-green-100" 
+                      onclick="window.livewire.emitTo('users.manage-roles','editUserRole','{{$user->slug}}')">
+                        <x-icon name="edit" class="inline w-4 h-4"/>
+                      </span>                      
                     </td>
                     <td class="px-4 py-3 text-xs">
      {{-- Display clearannce status--}}

@@ -9,7 +9,7 @@ class Modal extends Component
 
     public $show = false;
 
-    protected $listeners = ['show','suspendUserAccount','$refresh'];
+    protected $listeners = ['show','suspendUserAccount','editUserRole'];
 
     public function show()
     {

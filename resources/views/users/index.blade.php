@@ -13,6 +13,7 @@
                 $random =time().time();
               @endphp                      
               @livewire('users.suspend-user', key($random)) 
+              @livewire('users.manage-roles', key($random)) 
             @include('includes.search_user') 
             <x-session-warning/>
             <x-session-message/>            

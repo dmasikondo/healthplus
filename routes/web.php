@@ -19,9 +19,6 @@ use App\Http\Controllers\QuizController;
 Route::get('/', function () {
     return view('welcome');
 })->name('dashboard');
-Route::get('/user/profile', function () {
-    return view('/profile/show');
-})->middleware(['suspended']);
 
 Route::get('/users/activate-account',[UserController::class, 'activate'])->name('account-activation');
 Route::put('/users/activate-account',[UserController::class, 'activation']);

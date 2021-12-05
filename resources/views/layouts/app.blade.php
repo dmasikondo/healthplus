@@ -34,9 +34,16 @@
             @endif
 
             <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+            <div class="min-h-screen md:flex">
+              <div class="flex-none w-full md:max-w-xs">
+                <x-sidebar/>
+              </div>
+              <div class="flex-1 sm:ml-12 ml-12 md:ml-0">
+                <main class="">
+                    {{ $slot }}
+                </main>
+              </div>
+            </div>
         </div>
         {{-- footer --}}
         <div class="bg-green-900 py-4">
