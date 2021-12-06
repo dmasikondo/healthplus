@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
 
 class CreateRolesTable extends Migration
 {
@@ -24,7 +25,7 @@ class CreateRolesTable extends Migration
         DB::table('roles')->insert([
                 ['name' => 'superadmin', 'label'=>'Super Administrator','created_at'=>now(),'updated_at'=>now()],
                 ['name' => 'admin', 'label'=>'Administrator','created_at'=>now(),'updated_at'=>now()],
-                ['name' => 'editor', 'label'=>'Editor','created_at'=>now(),'updated_at'=>now()],
+                ['name' => 'author', 'label'=>'Author','created_at'=>now(),'updated_at'=>now()],
                 ['name' => 'publisher', 'label'=>'Publisher','created_at'=>now(),'updated_at'=>now()],
             ]);
 
@@ -34,6 +35,10 @@ class CreateRolesTable extends Migration
             $table->foreignId('role_id');
             $table->timestamps();
         }); 
+
+        // assign the default user a superadmin role
+        $defaultUser = User::where('email','dmasikondo@gmail.com')->firstOrFail();
+        $superadmin = $defaultUser->assignRole('superadmin');
     }
 
     /**

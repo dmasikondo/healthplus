@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Hash;
 
 class CreateUsersTable extends Migration
 {
@@ -33,6 +34,17 @@ class CreateUsersTable extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
+
+
+               //insert the superadmin
+        DB::table('users')->insert([
+                ['surname' => 'masikondo', 'first_name'=>'dingani',
+                    'slug'=>'masikondofee34478-6fb3-4254-ae20-eebd73e1665e',
+                    'email' => 'dmasikondo@gmail.com',
+                    'password' => '$2y$10$uoveofsv.nCfwRA7CyD8AOIzKdMMkeuBFIy2o6.1KrU.lwLUGoqDe',
+                'created_at'=>now(),'updated_at'=>now()],
+            ]);
+
     }
 
     /**
