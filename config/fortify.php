@@ -75,7 +75,7 @@ return [
         /**
          * if user is an editor or publisher
          */
-        elseif(Auth::user()->hasRole('editor') || Auth::user()->hasRole('publisher') )
+        elseif(Auth::user()->hasRole('author') || Auth::user()->hasRole('publisher') )
         {
             return "/articles/create";
         }
