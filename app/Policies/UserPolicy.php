@@ -34,14 +34,15 @@ class UserPolicy
     }
 
     /**
-     * Determine whether the user can create models.
+     * Determine whether the user can add other users.
+     * Must have role of admin or superadmin
      *
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function create(User $user)
     {
-        //
+        return $user->hasRole('admin') || $user->hasRole('superadmin');
     }
 
     /**

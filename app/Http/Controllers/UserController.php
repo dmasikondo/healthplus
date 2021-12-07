@@ -30,17 +30,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        //dd(Auth::user()->belongsTodepartmentOf('IT Unit'));
-/*        if((Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('IT Unit')) || Auth::user()->hasRole('superadmin'))
-        {*/
-            $roles =Role::orderBy('name')->get();
-            //dd('maboss');
-            return view('users.create', compact('roles'));            
-            
-/*        }  
-        else{
-            abort(403, 'It seems you are not authorised to view this page!');
-        }*/      
+        $this->authorize('create', User::class);
+        $roles =Role::orderBy('name')->get();
+        //dd('maboss');
+        return view('users.create', compact('roles'));            
+    
 
     }
 
