@@ -2,7 +2,7 @@
     <x-modal wire:model="show">   
         <!-- content -->
       <x-slot name="title">
-        Suspend User: {{$surname}}  {{$first_name}}
+        {{$status =='suspended'? 'Unsuspend': 'Suspend'}} User: {{$surname}}  {{$first_name}}
       </x-slot>
       <div class="m-4 p-4">
          <div class="md:col-span-2 xl:col-span-1">            
