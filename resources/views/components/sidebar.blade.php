@@ -1,5 +1,5 @@
   <!-- Sidebar -->
-      <div class="fixed flex flex-col top-32  sm:top-32 left-0 w-12 hover:w-64 md:w-64 bg-indigo-900 dark:bg-gray-900 h-full text-white transition-all duration-300 border-none z-10  sidebar opacity-75" style="top:">
+      <div class="fixed flex flex-col {{-- top-28 --}}  sm:top-28 left-0 w-12 hover:w-64 md:w-64 bg-indigo-900 dark:bg-gray-900 h-full text-white transition-all duration-300 border-none z-10  sidebar opacity-75" style="top: 4em;">
         <div class=" {{-- overflow-x-hidden --}} flex flex-col justify-between {{-- flex-grow --}}">
           <ul class="flex flex-col py-4 space-y-1">
             <li class="px-5 hidden md:block">

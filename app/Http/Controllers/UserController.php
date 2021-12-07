@@ -19,8 +19,11 @@ class UserController extends Controller
     public function index()
     {
         $this->authorize('view', User::class);
-        $roles = Role::orderBy('name')->get();
-        $users = User::orderBy('surname')->get();
+        $roles = Role::orderBy('name')->get();         
+        $users = User::filter(request(['role','surname','first_name','email']))
+         ->with('roles')
+         ->paginate(10)->withQueryString();
+        //orderBy('surname')->get();
         return view('users.index', compact('roles','users'));
     }
 

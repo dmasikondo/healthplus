@@ -1,6 +1,7 @@
 <!-- .Users Table --> 
 
-      @if($users->count()>0)           	
+      @if($users->count()>0)  
+              <h2 class="my-4"> {{$users->links()}}</h2>         	
               <table class="w-full">
                 <thead>
                   <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b">
@@ -83,6 +84,8 @@
                 @endforeach              
                 </tbody>
               </table>
+
+              <h2 class="my-4"> {{$users->links()}}</h2> 
         @else
             <h2 class="my-4 px-4 font-semibold text-xl text-center text-gray-400  bg-white inline-block self-center leading-loose rounded-lg">
               There are no registered users yet

@@ -5,14 +5,14 @@
         </svg>
         <span class="text-xs text-indigo-600">Search for the user using different criteria</span>
       </div>
-    <form action="/candidates">
-      <div class="flex gap-2 flex-col md:flex-row center">
-        <div class="relative flex-1">
+    <form action="/users">
+      <div class="flex gap-2 flex-col lg:flex-row center space-y-4">
+        <div class="relative flex-1 mt-4">
           <select  id="role" name="role" class="peer h-12 w-full border border-1.5 rounded-md border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-indigo-600 focus:border-2 p-3" placeholder="Select a User Role" title="Role">
           {{-- <div class="max-h-12 overflow-auto" > --}}
             <option value="" class="hover:bg-indigo-100">All: Roles</option>
           @foreach($roles as $role)
-            <option value="{{$role->id}}">{{$role->name}}</option>
+            <option value="{{$role->name}}" {{request('role')== $role->name? 'selected':''}} >{{$role->name}}</option>
           @endforeach
           </select>
           <label for="department" class="absolute left-2 px-1 -top-2.5 bg-white text-indigo-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-900 peer-placeholder-shown:top-2 peer-focus:-top-2.5 peer-focus:text-indigo-600 peer-focus:text-sm">User Role</label>
@@ -20,19 +20,26 @@
         </div>
      
         <div class="relative flex-1">
+          <input id="email" name="email" type="email" class="peer h-12 w-full border border-1.5 rounded-md border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-indigo-600 focus:border-2 p-3" placeholder="email" value="{{request('email')}}" />
+          <label for="email" class="absolute left-2 px-1 -top-2.5 bg-white text-indigo-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-900 peer-placeholder-shown:top-2 peer-focus:-top-2.5 peer-focus:text-indigo-600 peer-focus:text-sm">email</label>
+          <div class="absolute right-0 top-0 mt-2 mr-2">
+            <x-icon name="mail-open" class="h-6 w-6 text-indigo-600 hidden md:block" stroke-width="1"/>
+          </div>
+        </div>
+        <div class="relative flex-1">
           <input id="surname" name="surname" type="text" class="peer h-12 w-full border border-1.5 rounded-md border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-indigo-600 focus:border-2 p-3" placeholder="Surname" value="{{request('surname')}}" />
           <label for="surname" class="absolute left-2 px-1 -top-2.5 bg-white text-indigo-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-900 peer-placeholder-shown:top-2 peer-focus:-top-2.5 peer-focus:text-indigo-600 peer-focus:text-sm">Surname</label>
           <div class="absolute right-0 top-0 mt-2 mr-2">
-            <x-icon name="user" class="h-6 w-6 text-indigo-600 hidden md:block" stroke-width="1"/>
+            <x-icon name="users" class="h-6 w-6 text-indigo-600 hidden md:block" stroke-width="1"/>
           </div>
-        </div>
+        </div>        
         <div class="relative flex-1">
           <input id="first_name" value="{{request('first_name')}}" name="first_name" type="text" class="peer h-12 w-full border border-1.5 rounded-md border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-indigo-600 focus:border-2 py-4 px-8" 
             placeholder="First Name" 
           />
           <label for="candidate_number" class="absolute left-2 px-1 -top-2.5 bg-white text-indigo-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-900 peer-placeholder-shown:top-2 peer-focus:-top-2.5 peer-focus:text-indigo-600 peer-focus:text-sm">First Name</label>
           <div class="absolute right-0 top-0 mt-2 mr-2">
-            <x-icon name="identification" class="h-6 w-6 text-indigo-600 hidden md:block" stroke-width="1"/>
+            <x-icon name="user" class="h-6 w-6 text-indigo-600 hidden md:block" stroke-width="1"/>
           </div>
         </div>
 
