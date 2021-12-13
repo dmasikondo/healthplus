@@ -64,8 +64,10 @@
             <input  type="checkbox" wire:model.defer="roles", value="{{$role->id}}"> {{$role->name}}
         @endforeach
         <p>
+    @can('update',$user, Auth::user())
         <button type="submit" class="inline px-4 py-3 rounded-full font-bold text-white bg-indigo-300 hover:bg-gray-200 cursor-pointer" wire:click="updateUserRoles">  Update User Roles
-        </button>          
+        </button>   
+    @endcan       
         </p>
     </form>
 

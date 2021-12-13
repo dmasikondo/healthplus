@@ -46,15 +46,16 @@ class UserPolicy
     }
 
     /**
-     * Determine whether the user can update the model.
+     * Determine whether the user can update the user role.
+     * User must be have either the admin or superadmin role and not own account
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, User $model)
+    public function update(User $model, User $user)
     {
-        //
+        return $user->id != $model->id;
     }
 
     /**

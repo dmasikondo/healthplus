@@ -22,7 +22,12 @@
                         </div>
                         <div>
                         <a href="#/{{-- dashboard/fees-clearances/{{$student->slug --}}}}" class="text-blue-400 hover:text-gray-400">
-                          <p class="font-semibold">{{$user['surname']}} {{$user->first_name}} </p>
+                          <p class="font-semibold">
+                            {{$user['surname']}} {{$user->first_name}} 
+                       @cannot('update',$user, Auth::user())
+                          (Me)
+                       @endcannot
+                          </p>
                           <p class="text-xs text-gray-600 dark:text-gray-400">Created 3 days ago</p>
                         </a>
 
@@ -36,13 +41,16 @@
                       @foreach($user->roles as $role)
                       {{$role->name}}
                       @endforeach
+
+                  @can('update',$user, Auth::user())
                       <span class="px-2 py-1 font-semibold leading-tight text-green-700 rounded-full cursor-pointer hover:bg-green-100" 
                       onclick="window.livewire.emitTo('users.manage-roles','editUserRole','{{$user->slug}}')">
                         <x-icon name="edit" class="inline w-4 h-4"/>
-                      </span>                      
+                      </span>  
+                  @endcan                    
                     </td>
                     <td class="px-4 py-3 text-xs">
-     {{-- Display clearannce status--}}
+     {{-- Display user status--}}
              
                     @if(!$user->must_reset && !$user->is_suspended)
                       <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full"> 
@@ -73,7 +81,7 @@
                      </button>                                      
             
 
-       {{-- ./ Display clearannce status--}}              
+       {{-- ./ Display user status--}}              
                       
                       <p class="text-xs text-gray-600 dark:text-gray-400">
                       	{{-- {{!is_null($student->user->fees[0]->cleared_at)? $student->user->fees[0]->cleared_at->diffForHumans():''}} --}}

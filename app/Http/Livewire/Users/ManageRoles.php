@@ -5,8 +5,11 @@ namespace App\Http\Livewire\Users;
 use App\Http\Livewire\Modal;
 use App\Models\User;
 use App\Models\Role;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Auth;
 class ManageRoles extends Modal
 {
+    use AuthorizesRequests;
     public $status='suspended';
     public $surname;
     public $email;
@@ -44,7 +47,8 @@ class ManageRoles extends Modal
     } 
 
     public function updateUserRoles()
-    {        
+    {   
+        $this->authorize('update', $this->user, Auth::user());     
         $this->user->roles()->sync($this->roles);
         session()->flash('message',"The user: '$this->surname $this->first_name' was successfully given new roles");
         return redirect($this->currentUrl);        
