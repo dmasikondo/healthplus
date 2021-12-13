@@ -4,9 +4,11 @@ namespace App\Http\Livewire\Article;
 
 use App\Http\Livewire\Modal;
 use App\Models\Article;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Delete extends Modal
 {
+    use AuthorizesRequests;
     public $author;
     public $articleTitle;
     public $created;
@@ -24,11 +26,13 @@ class Delete extends Modal
         $this->articleTitle = $this->article->title;
         $this->created = $this->article->created_at->diffForHumans();
         $this->author =$this->article->user->first_name.' '.$this->article->user->surname;
+        $this->authorize('update', $this->article);
 
     }
 
     public function yesDelete() 
     {
+        $this->authorize('delete', $this->article);
         $this->article->delete();
         session()->flash('message', 'Your article item was successfully deleted');  
         return redirect('articles');

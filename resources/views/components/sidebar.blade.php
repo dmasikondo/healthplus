@@ -1,4 +1,5 @@
   <!-- Sidebar -->
+  @auth
       <div class="fixed flex flex-col {{-- top-28 --}}  sm:top-28 left-0 w-12 hover:w-64 md:w-64 bg-indigo-900 dark:bg-gray-900 h-full text-white transition-all duration-300 border-none z-10  sidebar opacity-75" style="top: 4em;">
         <div class=" {{-- overflow-x-hidden --}} flex flex-col justify-between {{-- flex-grow --}}">
           <ul class="flex flex-col py-4 space-y-1">
@@ -118,17 +119,5 @@
           </ul>
         </div>
       </div>
+@endauth
       <!-- ./Sidebar -->
-    
-
-
-    {{-- fiddle working example --}}
-
-{{-- <div class="min-h-screen md:flex">
-  <div class="flex-none w-full md:max-w-xs bg-purple text-white">
-    Sidebar
-  </div>
-  <div class="flex-1 bg-blue text-white">
-    Main content area
-  </div>
-</div> --}}

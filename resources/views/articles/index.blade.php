@@ -11,7 +11,8 @@
           @php
             $random =time().time();
           @endphp                      
-          @livewire('article.delete')             
+          @livewire('article.delete')  
+          @livewire('article.publish')            
           <x-session-message/>
         </div>        
     @if($articles->count()>0)
@@ -32,13 +33,23 @@
                         <a href="/articles/{{$article->slug}}" class="text-gray-400 hover:text-green-500">{{$article->title}}</a>                        
                     </h1>
                     <h4 class="flex justify-end">
+                    @can('publish',$article)
+                        <button title="{{is_null($article->published_at)? 'Publish': 'Unpublish'}} Article"   class="text-red-500 hover:text-red-700" onclick="window.livewire.emitTo('article.publish','publishArticle','{{$article->slug}}')">
+                            <x-icon name="{{is_null($article->published_at)? 'eye-off': 'eye'}}" class="w-6 h-6"/> 
+                        </button> 
+                    @endcan 
+
+                    @can('update',$article)                      
                         <button title="Edit" onclick="window.location.href='/articles/{{$article->slug}}/edit'"  class="text-green-500 hover:text-green-700">
                             <x-icon name="edit" class="text-green-500 hover:text-green-700 w-6 h-6" stroke-width="2"/> {{-- Edit --}}                                       
                         </button>
+                    @endcan
+
+                    @can('delete',$article)
                         <button title="Delete Article"   class="text-red-500 hover:text-red-700" onclick="window.livewire.emitTo('article.delete','deleteArticle','{{$article->slug}}')">
                             <x-icon name="trash" class="w-6 h-6"/> 
                         </button>
-                                               
+                    @endcan                         
                     </h4>                     
                     <p class="text-sm md:text-base font-normal text-gray-600">
                         Published {{Carbon\Carbon::parse($article->created_at)->format('D d M Y h:i:s')}}

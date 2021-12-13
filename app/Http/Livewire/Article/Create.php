@@ -5,11 +5,13 @@ namespace App\Http\Livewire\Article;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 //use App\Models\File;
 use Auth;
 
 class Create extends Component
 {
+    use AuthorizesRequests;
     use WithFileUploads;
     public $fileName;
     public $title;
@@ -34,7 +36,9 @@ class Create extends Component
         $this->resetValidation();
     }
     public function createArticle()
-    {        
+    {  
+
+        $this->authorize('create', Article::class);      
         $validateData =$this->validate([
             'fileName'=>'nullable|mimes:jpg,gif,jpeg,png,mp4,aac,ogg,mov,m4a,opus,amr,wma,qt,pdf',
             'description'=>'required',

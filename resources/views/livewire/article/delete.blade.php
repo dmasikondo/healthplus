@@ -18,7 +18,7 @@
                 </div> --}}
              
                 <div class="bg-white p-2 rounded mt-1 border-b border-gray-100 ">
-                    Are you sure you want to delete this article resource?</div>
+                    Are you sure you want to delete this article?</div>
                 <div class="bg-white p-2 rounded mt-1 border-b border-gray-100">
                   Do  not delete if you <span class="text-green-700">are not sure</span> proceed only when you are sure <span class="text-red-700">To Delete</span>
 
