@@ -11,7 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -139,23 +139,7 @@ class User extends Authenticatable
      public function belongsTodepartmentOf($dept)
      {
         $department = Department::where('name',$dept)->first();
-        //dd($department->id);
         return (bool)($this->staff()->where('user_id', $this->id)->where('department_id',$department->id)->count());
-        //dd($value);
-        //return (bool) $this->staff()->where('user_id', $this->id)->where('department_id',$department->id)->count();
-
-     /*  $exists= $this->whereHas('staff', fn ($query)=>
-            $query->where('department_id',$department->id )
-                    ->where('user_id', $this->id)
-            )->get();  
-       if($exists->count()>0){
-        return true;
-       }
-       else{
-        return false;
-       }*/
-        
-         
      }
 
      /**

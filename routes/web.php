@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\QuizController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,16 @@ Route::group(['middleware' => ['auth:sanctum','prevent-back-history','suspended'
     Route::get('/articles/{article:slug}', [ArticleController::class, 'show'])->name('article');
     Route::get('/articles/{article:slug}/edit', [ArticleController::class, 'edit'])->name('article-edit');
     Route::get('/quizzes/create', [QuizController::class, 'create'])->name('quizzes-create');
-    Route::get('/quizzes/{quiz:slug}/edit', [QuizController::class, 'edit'])->name('quizzes-edit');
+    Route::get('/quizzes/{quiz:slug}/edit', [QuizController::class, 'edit'])->name('quizzes-edit');  
+
     
 });
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify'); 
