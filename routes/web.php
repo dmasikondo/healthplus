@@ -38,9 +38,7 @@ Route::group(['middleware' => ['auth:sanctum','prevent-back-history','suspended'
     Route::get('/articles/{article:slug}', [ArticleController::class, 'show'])->name('article');
     Route::get('/articles/{article:slug}/edit', [ArticleController::class, 'edit'])->name('article-edit');
     Route::get('/quizzes/create', [QuizController::class, 'create'])->name('quizzes-create');
-    Route::get('/quizzes/{quiz:slug}/edit', [QuizController::class, 'edit'])->name('quizzes-edit');  
-
-    
+    Route::get('/quizzes/{quiz:slug}/edit', [QuizController::class, 'edit'])->name('quizzes-edit');   
 });
 
 Route::get('/email/verify', function () {
@@ -51,3 +49,12 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     $request->fulfill();
     return redirect('/');
 })->middleware(['auth', 'signed'])->name('verification.verify'); 
+
+
+Route::get('/ping', function(){
+        $mailchimp = new \MailchimpTransactional\ApiClient();
+        $mailchimp->config('services.mailchimp.key');
+
+        $response = $mailchimp->messages->send(["message" => $message]);
+        dd($response);
+});
