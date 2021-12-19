@@ -6,6 +6,9 @@ use Livewire\Component;
 use App\Http\Livewire\Modal;
 use App\Models\User;
 use URL;
+use Auth;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\UserWasSuspended;
 
 class SuspendUser extends Modal
 {
@@ -22,7 +25,8 @@ class SuspendUser extends Modal
     public $currentUrl;
     public $showSuspendUserBtn = false;
 
-
+    public $admin;
+    public $admins;
     public function resetForm()
     {
         $this->resetErrorBag();
@@ -42,6 +46,13 @@ class SuspendUser extends Modal
         $this->listRoles = $this->user->roles;
         $this->created = $this->user->created_at->diffForHumans();
         $this->getUserStatus();
+        $this->admin = auth()->user();
+        $this->admins = User::whereHas('roles',function($q){
+            $q->where('name','admin')
+                ->orWhere('name','superadmin');
+        })->get(); 
+
+        //dd($this->admin);       
       
     } 
 
@@ -64,7 +75,9 @@ class SuspendUser extends Modal
         //if user is not already suspended then suspend
 
         else{
-            $this->user->update(['is_suspended'=>true]); 
+            $this->user->update(['is_suspended'=>true]);
+            //send a notification to all admins and superadmins that account suspension state has changed
+            Notification::send($this->admins, new UserWasSuspended($this->user, $this->admin->first_name, $this->admin->surname));
             session()->flash('message',"The user: '$this->surname $this->first_name' was successfully suspended");
             return redirect($this->currentUrl);
 
@@ -90,6 +103,8 @@ class SuspendUser extends Modal
 
         else{
             $this->user->update(['is_suspended'=>false]); 
+            //send a notification to all admins and superadmins that account suspension state has changed
+            Notification::send($this->admins, new UserWasSuspended($this->user, $this->admin->first_name, $this->admin->surname));            
             session()->flash('message',"The user: '$this->surname $this->first_name' was successfully unsuspended");
             return redirect($this->currentUrl);
 

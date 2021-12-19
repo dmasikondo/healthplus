@@ -54,7 +54,7 @@
               </a>
             </li>
             <li>              
-              <a href="#" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
+              <a href="/users" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
                 <span class="inline-flex justify-center items-center ml-4">
                   <x-icon name="users" class="h-5 w-5"/>
                 </span>
@@ -105,7 +105,7 @@
             </li>
             <li>
             <li>              
-              <a href="#" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
+              <a href="/users" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
                 <span class="inline-flex justify-center items-center ml-4">
                   <x-icon name="users" class="h-5 w-5"/>
                 </span>
@@ -114,8 +114,16 @@
               </a>
             </li>
         @endif
-            {{-- ./ITU --}} 
-            
+            {{-- notifications --}} 
+            <li>              
+              <a href="/notifications" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
+                <span class="inline-flex justify-center items-center ml-4">
+                  <x-icon name="bell" class="h-5 w-5"/>
+                </span>
+                <span class="ml-2 text-sm tracking-wide truncate">Notifications</span>  
+                <span class="tracking-wide truncate px-2 py-1 mr-2 text-xs font-bold leading-none text-green-100 bg-green-600 rounded-full mx-4">{{auth()->user()->unreadNotifications->count()}}</span>            
+              </a>
+            </li>            
           </ul>
         </div>
       </div>

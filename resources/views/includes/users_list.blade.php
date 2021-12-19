@@ -21,7 +21,7 @@
                           <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                         </div>
                         <div>
-                        <a href="#/{{-- dashboard/fees-clearances/{{$student->slug --}}}}" class="text-blue-400 hover:text-gray-400">
+                        <a href="/users/{{$user->slug}}" class="text-blue-400 hover:text-gray-400">
                           <p class="font-semibold">
                             {{$user['surname']}} {{$user->first_name}} 
                        @cannot('update',$user, Auth::user())
@@ -52,28 +52,7 @@
                     <td class="px-4 py-3 text-xs">
      {{-- Display user status--}}
              
-                    @if(!$user->must_reset && !$user->is_suspended)
-                      <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full"> 
-                        Active 
-                        <x-icon name="check-circle" class="inline w-4 h-4"/>
-                      </span> 
-
-                     @elseif($user->is_suspended && $user->must_reset)
-                      <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full"> 
-                        Suspended and deactivated
-                        <x-icon name="exclamation" class="inline w-4 h-4"/>
-                      </span>                       
-                     @elseif($user->must_reset)
-                      <span class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full"> 
-                        Must Activate
-                      </span>                       
-                     @elseif($user->is_suspended)
-                      <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full"> 
-                        Suspended
-                        <x-icon name="exclamation" class="inline w-4 h-4"/>
-                      </span>  
-                                          
-                    @endif  
+                    @include('includes.user_status') 
 
                       <button onclick="window.livewire.emitTo('users.suspend-user','suspendUserAccount','{{$user->slug}}')" 
                         class="text-sm mx-2 py-1 px-2 rounded-lg bg-indigo-500 text-white hover:text-indigo-500 hover:bg-white hover:border-1 hover:border-indigo-500">

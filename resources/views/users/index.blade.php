@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="mt-4 mx-4">
-      <div class="max-w-7xl mx-auto overflow-hidden rounded-lg shadow-xs">
+      <div class="max-w-7xl overflow-hidden rounded-lg shadow-xs">
 
         <div class="overflow-x-auto"> 
               @php

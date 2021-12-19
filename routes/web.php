@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\NotificationController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -32,13 +33,15 @@ Route::get('/quizzes', [QuizController::class, 'index'])->name('quizzes');
 Route::group(['middleware' => ['auth:sanctum','prevent-back-history','suspended','activate','verified']], function(){
     Route::get('/users/registration', [UserController::class, 'create'])->name('user-registration');
     Route::post('/users/registration', [UserController::class, 'store']);
-    Route::get('/users', [UserController::class, 'index']);
+    Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::get('/users/{user:slug}', [UserController::class, 'show'])->name('user');
     Route::get('/users/is-suspended', [UserController::class, 'redirectIfSuspended']);
     Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles-create');
     Route::get('/articles/{article:slug}', [ArticleController::class, 'show'])->name('article');
     Route::get('/articles/{article:slug}/edit', [ArticleController::class, 'edit'])->name('article-edit');
     Route::get('/quizzes/create', [QuizController::class, 'create'])->name('quizzes-create');
     Route::get('/quizzes/{quiz:slug}/edit', [QuizController::class, 'edit'])->name('quizzes-edit');   
+    Route::get('/notifications',[NotificationController::class,'index'])->name('notifications');
 });
 
 Route::get('/email/verify', function () {
@@ -51,10 +54,3 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 })->middleware(['auth', 'signed'])->name('verification.verify'); 
 
 
-Route::get('/ping', function(){
-        $mailchimp = new \MailchimpTransactional\ApiClient();
-        $mailchimp->config('services.mailchimp.key');
-
-        $response = $mailchimp->messages->send(["message" => $message]);
-        dd($response);
-});

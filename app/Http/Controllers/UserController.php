@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use App\Models\Role;
 use App\Models\Department;
 use App\Models\User;
 use Illuminate\Validation\Rule;
+use App\Notifications\AccountActivated;
+use App\Notifications\UserWasAdded;
 //use Auth;
 
 class UserController extends Controller
@@ -26,6 +29,15 @@ class UserController extends Controller
         //orderBy('surname')->get();
         return view('users.index', compact('roles','users'));
     }
+
+    /**
+     * show the specified user
+     */
+    public function show(User $user)
+    {
+        return view('users.show', compact('user'));
+    }
+
 
     /**
      * Show the form for registering users
@@ -63,8 +75,14 @@ class UserController extends Controller
             'must_reset'=>true,
             'password' => Hash::make(request()->password),
         ]);
+        $admins = User::whereHas('roles',function($q){
+            $q->where('name','admin')
+                ->orWhere('name','superadmin');
+        })->get();        
         $user->roles()->sync(request()->role); 
         session()->flash('message',"User was successfully registered"); 
+        //send a notification to all admins and superadmins that account has been activated
+        Notification::send($admins, new UserWasAdded(auth()->user()));        
          return redirect('/users/registration') ;    
 
     }
@@ -75,9 +93,7 @@ class UserController extends Controller
 
     public function activate()
     {        
-       
-        Auth::guard('web')->logout();            
-        $slug= request()->ikokokwacho;
+               $slug= request()->ikokokwacho;
         
         return view('users.activate',compact('slug'));
     }
@@ -105,7 +121,14 @@ class UserController extends Controller
            session()->flash('warning',"This account is already active. You can log in using your last successful password"); 
              return redirect('/login') ;                 
         }
+        $admins = User::whereHas('roles',function($q){
+            $q->where('name','admin')
+                ->orWhere('name','superadmin');
+        })->get();
         $user->update(['must_reset' =>0,'password'=>Hash::make(request('password'))]);
+
+        //send a notification to all admins and superadmins that account has been activated
+        Notification::send($admins, new AccountActivated($user));
         session()->flash('message',"Your account was successfully activated. You can now login using your new password"); 
          return redirect('/login') ;      
 

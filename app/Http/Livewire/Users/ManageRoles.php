@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Role;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Auth;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\UserRoleWasChanged;
 class ManageRoles extends Modal
 {
     use AuthorizesRequests;
@@ -21,7 +23,8 @@ class ManageRoles extends Modal
     public $availableUserRoles =[];
     public $roles =[];
     public $currentUrl;
-
+    public $admin;
+    public $admins;
 
     public function resetForm()
     {
@@ -43,14 +46,20 @@ class ManageRoles extends Modal
         $this->listUserRoles = $this->user->roles;
         $this->created = $this->user->created_at->diffForHumans();
         $this->getUserStatus();
-      
+        $this->admini = auth()->user();
+        $this->admins = User::whereHas('roles',function($q){
+            $q->where('name','admin')
+                ->orWhere('name','superadmin');
+        })->get();   
     } 
 
     public function updateUserRoles()
-    {   
+    {  
         $this->authorize('update', $this->user, Auth::user());     
-        $this->user->roles()->sync($this->roles);
+        $this->user->roles()->sync($this->roles);       
         session()->flash('message',"The user: '$this->surname $this->first_name' was successfully given new roles");
+        //send a notification to all admins and superadmins that the user's roles were changed
+        Notification::send($this->admins, new UserRoleWasChanged($this->user, $this->admini->first_name, $this->admini->surname)); 
         return redirect($this->currentUrl);        
     }    
     /**
