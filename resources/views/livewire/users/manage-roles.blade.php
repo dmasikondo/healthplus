@@ -61,13 +61,14 @@
     <form wire:submit.prevent="updateUserRoles">
         <p>Select the new user roles</p>
         @foreach($availableUserRoles as $role)
-            <input  type="checkbox" wire:model.defer="roles", value="{{$role->id}}"> {{$role->name}}
+            <input type="checkbox" wire:model.defer="roles", value="{{$role->id}}" {{$listUserRoles[0]['name']==$role->name? "checked='checked'":''}}>
+            <span class="{{$listUserRoles[0]['name']==$role->name? 'text-green-400':''}}">{{$role->name}}</span> 
+            
         @endforeach
         <p>
-    @can('update',$user, Auth::user())
         <button type="submit" class="inline px-4 py-3 rounded-full font-bold text-white bg-indigo-300 hover:bg-gray-200 cursor-pointer" wire:click="updateUserRoles">  Update User Roles
         </button>   
-    @endcan       
+           
         </p>
     </form>
 

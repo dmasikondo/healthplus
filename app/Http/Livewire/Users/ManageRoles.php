@@ -50,7 +50,7 @@ class ManageRoles extends Modal
         $this->admins = User::whereHas('roles',function($q){
             $q->where('name','admin')
                 ->orWhere('name','superadmin');
-        })->get();   
+        })->get(); 
     } 
 
     public function updateUserRoles()

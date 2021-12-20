@@ -18,13 +18,15 @@
             </div>
             <div class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
               <div class="py-6 px-3 mt-32 sm:mt-0">
+        @can('update',$user, Auth::user())
                 <button onclick="window.livewire.emitTo('users.suspend-user','suspendUserAccount','{{$user->slug}}')"
                   class="bg-green-600 uppercase text-white font-bold hover:shadow-md hover:bg-green-200 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
                   {{$user->is_suspended? 'Unsuspend': 'Suspend'}}
                 </button>
-                
+         @endcan       
               </div>
             </div>
+        
             <div class="w-full lg:w-4/12 px-4 lg:order-1">
               <div class="flex justify-center py-4 lg:pt-4 pt-8">
                 <div class="mr-4 p-3 text-center">
@@ -69,9 +71,11 @@
                 <p>User Status: 
                   @include('includes.user_status')  
                 </p>
+              @can('update',$user, Auth::user())
                 <p class="mt-4">
                   <button onclick="window.livewire.emitTo('users.manage-roles','editUserRole','{{$user->slug}}')" class="font-normal text-green-500">Assign Roles</button>
                 </p>
+              @endcan
                 
               </div>
             </div>
