@@ -12,7 +12,14 @@ class Article extends Model
     protected $guarded = [];
 
     protected $hidden =['updated_at'];
-
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'published_at' => 'datetime',
+    ];
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -155,5 +162,42 @@ if(strstr($mime, "video/")){
         else{
             return true;
         }
-     }             
+     }  
+
+    public function scopeFilter($query, array $filters)
+    {
+            //filter by article's category
+            $query->when($filters['category'] ?? false, fn($query, $category) =>
+                $query->where('category', $category)
+            );   
+
+            //filter by article's published status
+            $query->when($filters['published'] ?? false, fn($query) =>
+                $query->whereNotNull('published_at')
+            );  
+            //filter by article's published status
+            $query->when($filters['unpublished'] ?? false, fn($query) =>
+                $query->whereNull('published_at')
+            );  
+
+            //filter by article's title or description
+            $query->when($filters['content'] ?? false, fn($query, $content) =>
+                $query->where('title', 'like', '%' .  $content. '%')
+                    ->orWhere('description', 'like', '%' . $content . '%')
+            ); 
+
+            // filter by author's firstname
+            $query->when($filters['name'] ?? false, fn($query, $name) =>
+                $query->whereHas('user', fn ($query) =>
+                $query->where('first_name', $name)
+                )
+            ); 
+
+            // filter by author's firstname
+            $query->when($filters['second_name'] ?? false, fn($query, $second_name) =>
+                $query->whereHas('user', fn ($query) =>
+                $query->where('surname', $second_name)
+                )
+            );                                                                                        
+    }                 
 }

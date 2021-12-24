@@ -9,8 +9,11 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = Article::latest()->get();
+        $articles = Article::filter(request(['category','published','unpublished','content','name','second_name']))
+        ->latest()
+         ->paginate(4)->withQueryString();
         return view('articles.index', compact('articles'));
+        return view('articles.home', compact('articles'));
     }
 
     public function create()

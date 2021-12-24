@@ -58,9 +58,9 @@
             </div>
         </div>
 
-        <div class="my-4 relative flex-1">
+        <div class="my-4 relative flex-1 ml-4">
             <x-form.input id="link" type="text" name="link" placeholder="Url link" wire:model.defer="link"/> 
-            <x-form.label for="link">Url link</x-form.label>             
+            <x-form.label for="link">Url embeded link</x-form.label>             
             <div class="absolute right-0 top-0 mt-6 mr-2">
                 <x-icon name="link" class="h-6 w-6 text-green-600 hidden md:block" stroke-width="1"/>                           
             </div>

@@ -8,6 +8,9 @@ use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 //use App\Models\File;
 use Auth;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\ArticleWasCreated;
+use App\Models\User;
 
 class Create extends Component
 {
@@ -25,6 +28,7 @@ class Create extends Component
     public $article;
     public $article_id;
     public $slug;
+    public $admins;    
     //public $files =[];
 
     protected function resetForm()
@@ -69,7 +73,12 @@ class Create extends Component
                 'category'=>$this->category, 'description'=>$this->description,'slug'=>$this->slug,
                 'link'=>$this->link,
             ]);
-       
+            $this->admins = User::whereHas('roles',function($q){
+                $q->where('name','publisher')
+                    ->orWhere('name','superadmin');
+            })->get();   
+            //send a notification to all admins and superadmins that account suspension state has changed
+            Notification::send($this->admins, new ArticleWasCreated(auth()->user(), $this->title, $this->slug));                 
             $this->resetValidation();
             $this->resetForm();
             $this->iteration++;

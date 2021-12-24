@@ -4,7 +4,7 @@
             {{ __('Create an awesome article') }} 
         </h2>
     </x-slot> 
-<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">              		
+<div class="max-w-7xl sm:px-6 lg:px-8">              		
      <div class="mt-4 mx-4">
       <div class="max-w-7xl overflow-hidden rounded-lg shadow-lg">
       	@livewire('article.create')

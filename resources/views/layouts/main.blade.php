@@ -10,7 +10,7 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
         <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">  
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">        
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
@@ -20,34 +20,48 @@
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
-    <body style="font-family: Open Sans, sans-serif">
-        <x-jet-banner />
 
-        <div class="min-h-screen {{-- bg-gray-100 --}} bg-gradient-to-br hover:from-yellow-50 hover:via-white to-green-50">
-            @livewire('navigation-menu')
-
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
-
-            <!-- Page Content -->
-            <div class="min-h-screen md:flex">
-              <div class="flex-none w-full md:max-w-xs">
-                <x-sidebar.menu/>
-              </div>
-              <div class="flex-1 sm:ml-12 ml-12 md:ml-0">
-                <main class="">
-                    {{ $slot }}
-                </main>
-              </div>
+<body style="font-family: Open Sans, sans-serif">
+    <x-jet-banner />
+    @livewire('navigation-menu')    
+    <section class="px-6 py-8">
+        <nav class="md:flex md:justify-between md:items-center">
+            <div>
+                <a href="/">
+                    <img src="{{url('storage/images/health_plus_logo.svg')}}" alt="Health Plus Logo" style="height: 2em;">
+                </a>
             </div>
-        </div>
-        {{-- footer --}}
+
+            <div class="mt-8 md:mt-0">
+                <a href="/" class="text-xs font-bold uppercase">Home Page</a>
+
+                <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                    Subscribe for Updates
+                </a>
+            </div>
+        </nav>
+
+        @include('partials._articles-header')
+
+        <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
+        @if($articles->count())
+        {{$articles->links()}}
+            <x-articles.article-featured-card :article="$articles[0]"/>
+
+            <div class="lg:grid lg:grid-cols-6">
+                @foreach($articles->skip(1) as $article)
+                <x-articles.article-card 
+                    :article="$article" 
+                    class="{{$loop->iteration < 3 ? 'col-span-3': 'col-span-2'}}"
+                    />
+                @endforeach
+            </div> 
+            {{$articles->links()}}             
+        @else
+            <p class="text-center">No articles yet. Please check back later</p>
+        @endif
+        </main>
+
         <footer class="bg-gradient-to-br from-yellow-50 via-white to-green-50 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16">
             <img src="{{url('storage/images/healthplus_cat.png')}}" alt="Health Plus Cat" alt="" class="mx-auto -mb-6" style="width: 145px;">
             <h5 class="text-3xl font-semibold">Stay alert with the latest valuable articles</h5>
@@ -75,10 +89,5 @@
                 </div>
             </div>
         </footer>
-        {{-- ./footer --}}
-
-        @stack('modals')
-
-        @livewireScripts
-    </body>
-</html>
+    </section>
+</body>
