@@ -40,8 +40,8 @@
               <div class="flex-none w-full md:max-w-xs">
                 <x-sidebar.menu/>
               </div>
-              <div class="flex-1 sm:ml-12 ml-12 md:ml-0">
-                <main class="">
+              <div class="flex-1 sm:ml-32 ml-12 md:ml-0">
+                <main class="">                   
                     {{ $slot }}
                 </main>
               </div>

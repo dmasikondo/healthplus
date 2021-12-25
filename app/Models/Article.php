@@ -169,7 +169,7 @@ if(strstr($mime, "video/")){
             //filter by article's category
             $query->when($filters['category'] ?? false, fn($query, $category) =>
                 $query->where('category', $category)
-            );   
+            );  
 
             //filter by article's published status
             $query->when($filters['published'] ?? false, fn($query) =>

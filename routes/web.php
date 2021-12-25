@@ -25,9 +25,9 @@ Route::get('/', function () {
 Route::get('/users/activate-account',[UserController::class, 'activate'])->name('account-activation');
 Route::put('/users/activate-account',[UserController::class, 'activation']);
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles');
-Route::get('/articles/prevention', [ArticleController::class, 'prevention'])->name('prevention');
-Route::get('/articles/treatment', [ArticleController::class, 'treatment'])->name('treatment');
-Route::get('/articles/pmtct', [ArticleController::class, 'pmtct'])->name('pmtct');
+Route::get('/articles?category=prevention', [ArticleController::class, 'prevention'])->name('prevention');
+Route::get('/articles?category=treatment', [ArticleController::class, 'treatment'])->name('treatment');
+Route::get('/articles?category=pmtct', [ArticleController::class, 'pmtct'])->name('pmtct');
 Route::get('/quizzes', [QuizController::class, 'index'])->name('quizzes');
 
 Route::group(['middleware' => ['auth:sanctum','prevent-back-history','suspended','activate','verified']], function(){

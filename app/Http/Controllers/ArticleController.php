@@ -4,16 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
+use Auth;
 
 class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = Article::filter(request(['category','published','unpublished','content','name','second_name']))
-        ->latest()
-         ->paginate(4)->withQueryString();
+        /**
+         * if user has role of superadmin or publisher show all posts
+         * if not admin or publisher show only published and own posts
+         * if not logged in show published posts only
+         */
+        $posts = Article::filter(request(['category','published','unpublished','content','name','second_name']))
+        ->with('user')
+        ->latest();
+        if(Auth::check())
+        {
+             if(Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('publisher')){
+                  $posts=$posts;
+              }            
+             elseif(!Auth::user()->hasRole('superadmin') || !Auth::user()->hasRole('publisher')){
+                  $posts=$posts->where('user_id', Auth::user()->id)->orWhereNotNull('published_at');
+              }  
+        }
+        else{
+            $posts = $posts->whereNotNull('published_at');
+        }
+
+        $articles = $posts->paginate(3)->withQueryString();   
         return view('articles.index', compact('articles'));
-        return view('articles.home', compact('articles'));
     }
 
     public function create()

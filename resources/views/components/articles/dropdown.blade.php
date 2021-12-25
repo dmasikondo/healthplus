@@ -1,9 +1,9 @@
 @props(['title'])
 <div x-data="{show: false}" @click.away="show=false">
     {{-- trigger --}}
-    <button @click="show=!show" {{$attributes->merge(['class'=>"appearance-none lg:flex py-2 pl-3 pr-9 text-sm font-semibold lg:inline-flex   w-full lg:w-40"])}}>
+    <button @click="show=!show" {{$attributes->merge(['class'=>"appearance-none lg:flex py-2 pl-3 pr-9 text-sm font-semibold lg:inline-flex w-full lg:w-40 w-40"])}}>
             {{$title}}
-        <svg class="transform -rotate-90 absolute pointer-events-none" style="right: 12px;" width="22"
+        <svg class="transform -rotate-90 absolute pointer-events-none" style="right: 12px; z-index: 99;" width="22" 
              height="22" viewBox="0 0 22 22">
             <g fill="none" fill-rule="evenodd">
                 <path stroke="#000" stroke-opacity=".012" stroke-width=".5" d="M21 1v20.16H.84V1z">
@@ -13,7 +13,7 @@
             </g>
         </svg>                            
     </button>
-    <div x-show="show" {{$attributes->merge(['class'=>"text-left p-2 absolute w-32 mt-2 rounded bg-gradient-to-br from-yellow-50 via-white to-green-50 border z-50"])}}  style="display: none;">  
+    <div x-show="show" {{$attributes->merge(['class'=>"text-left p-2 absolute w-40 mt-2 rounded bg-gradient-to-br from-yellow-50 via-white to-green-50 border z-50"])}}  style="display: none;">  
              {{$slot}}              
     </div>
 </div>

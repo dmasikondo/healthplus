@@ -20,20 +20,21 @@
                 </a>
             </div>
         </nav>
-
         @include('partials._articles-header')
-
         <div class="max-w-6xl mt-6 lg:mt-20 space-y-6">
         @if($articles->count())
+
         {{$articles->links()}}
             <x-articles.article-featured-card :article="$articles[0]"/>
 
             <div class="lg:grid lg:grid-cols-6">
                 @foreach($articles->skip(1) as $article)
+            @can('view',auth()->user(), $article)
                 <x-articles.article-card 
                     :article="$article" 
                     class="{{$loop->iteration < 3 ? 'col-span-3': 'col-span-2'}}"
                     />
+            @endcan
                 @endforeach
             </div> 
             {{$articles->links()}}             

@@ -22,7 +22,9 @@ class ArticlePolicy
     }
 
     /**
-     * Determine whether the user can view the model.
+     * Determine whether the user can view the article
+     * article is published.
+     * not published but article belongs to user or user is publisher or superadmin
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Article  $article
@@ -30,7 +32,7 @@ class ArticlePolicy
      */
     public function view(User $user, Article $article)
     {
-        //
+       return  !is_null($article->published_at) || $article->user_id ==$user_id || $user->hasRole('superadmin') || $user->hasRole('publisher');
     }
 
     /**
