@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\StatisticsController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -36,10 +37,13 @@ Route::group(['middleware' => ['auth:sanctum','prevent-back-history','suspended'
     Route::get('/users', [UserController::class, 'index'])->name('users');
     Route::get('/users/{user:slug}', [UserController::class, 'show'])->name('user');
     Route::get('/users/is-suspended', [UserController::class, 'redirectIfSuspended']);
+    Route::get('/articles/unpublished', [ArticleController::class, 'unpublished'])->name('articles-unpublished');
     Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles-create');
+    Route::get('/articles/my-articles', [ArticleController::class, 'myArticles'])->name('my-articles');
     Route::get('/articles/{article:slug}', [ArticleController::class, 'show'])->name('article');
     Route::get('/articles/{article:slug}/edit', [ArticleController::class, 'edit'])->name('article-edit');
     Route::get('/quizzes/create', [QuizController::class, 'create'])->name('quizzes-create');
+    Route::get('/statistics', [StatisticsController::class, 'index'])->name('statistics');
     Route::get('/quizzes/{quiz:slug}/edit', [QuizController::class, 'edit'])->name('quizzes-edit');   
     Route::get('/notifications',[NotificationController::class,'index'])->name('notifications');
 });

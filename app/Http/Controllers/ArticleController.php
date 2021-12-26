@@ -15,23 +15,23 @@ class ArticleController extends Controller
          * if not admin or publisher show only published and own posts
          * if not logged in show published posts only
          */
-        $posts = Article::filter(request(['category','published','unpublished','content','name','second_name']))
-        ->with('user')
-        ->latest();
+        $posts = Article::with('user')->latest();
         if(Auth::check())
         {
              if(Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('publisher')){
                   $posts=$posts;
               }            
              elseif(!Auth::user()->hasRole('superadmin') || !Auth::user()->hasRole('publisher')){
-                  $posts=$posts->where('user_id', Auth::user()->id)->orWhereNotNull('published_at');
+                  $posts=$posts->where('user_id', Auth::user()->id)->orWhereNotNull('published_at');                  
               }  
         }
         else{
             $posts = $posts->whereNotNull('published_at');
         }
 
-        $articles = $posts->paginate(3)->withQueryString();   
+        $articles = $posts->filter(request(['category','published','unpublished','content','name','second_name']))
+                    ->paginate(3)
+                    ->withQueryString();   
         return view('articles.index', compact('articles'));
     }
 
@@ -68,5 +68,25 @@ class ArticleController extends Controller
     {
         $articles = Article::where('category','pmtct')->latest()->get();
         return view('articles.index', compact('articles'));
-    }        
+    } 
+
+    /**
+     * articles that were written by the user
+     */
+    public function myArticles()
+    {
+        $articles =Auth::user()->articles()->filter(request(['category','published','unpublished','content','name','second_name']))
+        ->latest() 
+        ->paginate(3)->withQueryString();   
+
+        return view('articles.index', compact('articles'));    
+    } 
+
+    public function unpublished()
+    {
+        $articles = Article::with('user')->latest()->whereNull('published_at')
+                    ->filter(request(['category','published','unpublished','content','name','second_name'])) 
+                    ->paginate(3)->withQueryString(); 
+        return view('articles.index', compact('articles'));         
+    }      
 }

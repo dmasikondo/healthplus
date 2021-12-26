@@ -6,7 +6,7 @@
 
         <div class="mb-4 text-sm text-gray-600">
             You were successfully signed up! But before getting started, could you verify your email by clicking on the link we just emailed to  
-            <b>{{Auth::user()->email}}</b> ? If you didn\'t receive the email, we will gladly send you another
+            <b>{{Auth::user()->email}}</b> ? If you didn't receive the email, we will gladly send you another
         </div>
 
         @if (session('status') == 'verification-link-sent')

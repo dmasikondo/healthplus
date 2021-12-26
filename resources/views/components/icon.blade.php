@@ -54,10 +54,15 @@
 		</svg>
 	{{-- mail --}}
 	@elseif($name=='mail')
-		<svg {{$attributes(['class'=>"inline"])}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+		<svg {{$attributes(['class'=>"",'stroke-width'=>''])}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
 		  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
 		  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
 		</svg>
+	{{-- mail-open --}}
+	@elseif($name=='email-open')
+		<svg {{$attributes(['class'=>"",'stroke-width'=>''])}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+		  <path stroke-linecap="round" stroke-linejoin="round" d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76" />
+		</svg>	
 	{{-- location-marker --}}
 	@elseif($name=='location-marker')	
 		<svg {{$attributes(['class'=>"inline"])}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -243,5 +248,42 @@
 	@elseif($name=='adjustments')
 		<svg {{$attributes(['class'=>"",'stroke-width'=>''])}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 		  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+		</svg>
+	{{-- beaker --}}
+	{{-- globe-alt --}}
+	@elseif($name=='globe-alt')
+		<svg {{$attributes(['class'=>"",'stroke-width'=>''])}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+		  <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+		</svg>
+	{{-- beaker --}}
+	@elseif($name=='beaker')
+		<svg {{$attributes(['class'=>"",'stroke-width'=>''])}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+		  <path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+		</svg>
+	{{-- finger-print --}}
+	@elseif($name=='finger-print')
+		<svg {{$attributes(['class'=>"",'stroke-width'=>''])}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+		  <path stroke-linecap="round" stroke-linejoin="round" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4" />
+		</svg>
+	{{-- pencil  --}}
+	@elseif($name=='pencil')
+		<svg {{$attributes(['class'=>"",'stroke-width'=>''])}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+		  <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+		</svg>	
+	{{-- printer --}}
+	@elseif($name=='printer')
+		<svg {{$attributes(['class'=>"",'stroke-width'=>''])}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+		  <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+		</svg>	
+	{{-- emoji-happy --}}
+	@elseif($name=='emoji-happy')
+		<svg {{$attributes(['class'=>"",'stroke-width'=>''])}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+		  <path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+		</svg>
+	{{-- emoji-sad --}}
+	@elseif($name=='emoji-sad')
+		<svg {{$attributes(['class'=>"",'stroke-width'=>''])}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+		  <path stroke-linecap="round" stroke-linejoin="round" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
 		</svg>	
 	@endif
+

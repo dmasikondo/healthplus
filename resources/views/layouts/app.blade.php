@@ -63,10 +63,9 @@
                         </div>
 
                         <div class="mt-8 md:mt-0 space-x-6">
-                            <a href="/" class="text-xs font-bold uppercase text-gray-900 hover:text-green-500 font-bold no-underline hover:underline">Home Page</a>
-                            <a href="/articles" class="text-xs font-bold uppercase text-gray-900 hover:text-green-500 font-bold no-underline hover:underline">Articles</a>
-                            <a href="/quizzes" class="text-xs font-bold uppercase text-gray-900 hover:text-green-500 font-bold no-underline hover:underline">Quizzes</a>
-
+                            <x-link href="/">Home Page</x-link>
+                            <x-link href="/articles">Articles</x-link>
+                            <x-link href="/quizzes">Quizzes</x-link>
                             
                         </div>
                     </nav>

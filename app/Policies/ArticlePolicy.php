@@ -32,7 +32,7 @@ class ArticlePolicy
      */
     public function view(User $user, Article $article)
     {
-       return  !is_null($article->published_at) || $article->user_id ==$user_id || $user->hasRole('superadmin') || $user->hasRole('publisher');
+       return  !is_null($article->published_at) || $article->user_id ==$user->id || $user->hasRole('superadmin') || $user->hasRole('publisher');
     }
 
     /**

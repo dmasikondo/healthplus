@@ -50,9 +50,7 @@ class SuspendUser extends Modal
         $this->admins = User::whereHas('roles',function($q){
             $q->where('name','admin')
                 ->orWhere('name','superadmin');
-        })->get(); 
-
-        //dd($this->admin);       
+        })->get();     
       
     } 
 

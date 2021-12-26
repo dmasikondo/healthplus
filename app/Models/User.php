@@ -116,32 +116,6 @@ class User extends Authenticatable implements MustVerifyEmail
          return ucwords($desc);
      }
 
-     public function isClearedOffline()
-     {
-        $cleared_national_id = ClearedStudent::where('national_id_name','LIKE',$this->national_id.'%')->get();
-        if($cleared_national_id->count()>0) {
-            return true;
-        }
-        else{
-            return false;
-        }        
-     }
-
-     public function isStudent()
-     {
-        return (bool) $this->results()->where('users_id', $this->id)->count();
-     }
-
-     /**
-      * check if user belongs to a given department
-      */
-
-     public function belongsTodepartmentOf($dept)
-     {
-        $department = Department::where('name',$dept)->first();
-        return (bool)($this->staff()->where('user_id', $this->id)->where('department_id',$department->id)->count());
-     }
-
      /**
       * search users based on different criteria
       */

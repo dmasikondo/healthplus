@@ -7,6 +7,8 @@
                 Awesome articles 
                 @if(isset(request()->name))
                     by {{request()->name}} {{request()->second_name}}
+                @elseif(request()->routeIs('my-articles'))
+                    by Me
                 @else
                 for tackling Hiv 
                 @endif
@@ -15,7 +17,7 @@
             </h2>
             <p class="text-sm mt-4 space-y-2">
                 <span>Another year. Another update.</span> 
-                <span>Promote Adherence, Awareness and Prevention amongst Adolescents living with Hiv by creating and maintaining good articles!</span>
+                <span>Promoting Adherence, Awareness and Prevention amongst Adolescents living with Hiv by creating and maintaining good articles!</span>
             </p>
 
             <div class="space-y-2 lg:space-y-0 lg:space-x-4 mt-8">
@@ -71,4 +73,3 @@
                 </div>               
             </div>
         </header>
-

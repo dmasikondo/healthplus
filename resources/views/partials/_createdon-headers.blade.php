@@ -4,7 +4,7 @@
            class="px-3 py-1 border border-blue-300 rounded-full text-blue-300 text-xs uppercase font-semibold"
            style="font-size: 10px">{{$article->category}}</a>
 
-        <a href="#"
+        <a href="/articles?{{!is_null($article->published_at)? 'published=published': 'unpublished=unpublished'}}"
            class="px-3 py-1 border {{!is_null($article->published_at)? 'border-green-300 hover:bg-green-200 text-green-300': 'border-red-300 hover:bg-red-200 text-red-300'}} rounded-full text-xs uppercase font-semibold"
            style="font-size: 10px">{{!is_null($article->published_at)? 'Published': 'Not Published'}}</a>
     </div>
