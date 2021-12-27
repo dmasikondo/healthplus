@@ -3,8 +3,8 @@
 
     {{-- file is a video  --}}
 @elseif($article->isVideo())
-    <video controls="" class="w-full" name="media" onclick="this.paused ? this.play() : this.pause();"> 
-      <source src="/{{$article->filePath}}">
+    <video controls="" class="w-full" name="media" onclick="this.paused ? this.play() : this.pause();" style="max-height: 19.6875em; min-width: 100%;"> 
+      <source src="{{$article->filePath}}">
     </video>
 @elseif($article->isPdf())
     <iframe  class="w-full" 

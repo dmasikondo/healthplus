@@ -90,8 +90,16 @@ class Create extends Component
                 session()->flash('message', 'Your article was successfully updated');  
 
             }
-            return redirect('/articles');
-    }   
+            return redirect('/articles/'.$this->slug);
+    } 
+
+    public function deleteFile()
+    {
+       $filePath =substr($this->article->filePath, 1);
+        unlink($filePath);
+        $this->article->update(['filePath'=>NULL]);
+        session()->flash('message', 'File was successfully removed'); 
+    }  
 
 
     public function mount()

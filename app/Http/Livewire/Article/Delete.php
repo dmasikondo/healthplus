@@ -33,6 +33,11 @@ class Delete extends Modal
     public function yesDelete() 
     {
         $this->authorize('delete', $this->article);
+        //if there is a file, first delete it
+        if(!is_null($this->article->filePath)){
+           $filePath =substr($this->article->filePath, 1);
+            unlink($filePath);            
+        }        
         $this->article->delete();
         session()->flash('message', 'Your article item was successfully deleted');  
         return redirect('articles');
