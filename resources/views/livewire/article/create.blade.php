@@ -33,6 +33,9 @@
           <source src="{{$article->filePath}}" >
         </video>
     @elseif($article->isPdf())
+        <p>
+            <x-link wire:click="deleteFile()" class="cursor-pointer">Remove Attached File</x-link>
+        </p>        
         <iframe  class="w-full" 
         src="{{$article->filePath}}">
         </iframe>

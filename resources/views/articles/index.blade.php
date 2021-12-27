@@ -22,6 +22,7 @@
         </nav>
         @include('partials._articles-header')
         <div class="max-w-6xl mt-6 lg:mt-20 space-y-6">
+            <x-session-message/>
         @if($articles->count())
 
         {{$articles->links()}}

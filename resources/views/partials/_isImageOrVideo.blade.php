@@ -1,5 +1,5 @@
 @if($article->isImage())
-    <a href="{{$article->filePath}}"><img src="{{$article->filePath}}" alt="" style="max-height: 19.6875em; min-width: 100%;"></a>
+    <a href="{{$article->filePath}}"><img src="{{$article->filePath}}" alt="{{$article->title}}" style="max-height: 19.6875em; min-width: 100%;"></a>
 
     {{-- file is a video  --}}
 @elseif($article->isVideo())
@@ -7,9 +7,9 @@
       <source src="{{$article->filePath}}">
     </video>
 @elseif($article->isPdf())
-    <iframe  class="w-full" 
-    src="{{$article->filePath}}">
-    </iframe>
+        <embed src="{{$article->filePath}}" 
+         type="application/pdf" style="max-height: 19.6875em; min-width: 100%;">                            
+   
 @elseif($article->haslink())
     <iframe width="100%" height="315" class="rounded-xl" 
     src="{{$article->link}}">

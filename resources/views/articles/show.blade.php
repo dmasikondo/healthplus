@@ -7,6 +7,7 @@
      <div class="mt-4 ">
       <div class="max-w-7xl overflow-hidden rounded-lg shadow-xs">
       	<div class=""> 
+            @livewire('article.delete') 
             <x-card class="col-span-8 border-b-4 {{App\models\Article::randomColor()}}"> 
                 <div class=" px-4 md:px-6 text-xl text-gray-800 leading-normal" style="font-family:Georgia,serif;">
                     <div class="font-sans my-4 pb-6" style="  border-style: solid;
@@ -74,10 +75,11 @@
                           <source src="{{$article->filePath}}">
                         </video> 
                     @elseif($article->isPdf())
-                        <iframe  class="w-full" 
-                        {{-- src="https://youtube.com/embed/bGS5sdmsUag"> --}}
-                        src="{{$article->filePath}}">
-                        </iframe>
+                        <a href="{{$article->filePath}}">
+                            <embed src="{{$article->filePath}}" class="w-full" 
+                             type="application/pdf">                            
+                        </a>                        
+
                     @elseif($article->haslink())
                         <iframe width="100%" height=""
                         {{-- src="https://youtube.com/embed/bGS5sdmsUag"> --}}
