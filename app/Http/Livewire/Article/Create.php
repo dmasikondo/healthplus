@@ -72,11 +72,10 @@ class Create extends Component
             Auth::user()->articles()->updateOrCreate(['id'=>$this->article_id],['filePath' =>$url, 'title' =>$this->title,
                 'category'=>$this->category, 'description'=>$this->description,'slug'=>$this->slug,
                 'link'=>$this->link,
-            ]);
-            $this->admins = User::whereHas('roles',function($q){
-                $q->where('name','publisher')
-                    ->orWhere('name','superadmin');
-            })->get();   
+            ]); 
+
+            $this->usersToBeNotified();       
+  
             //send a notification to all admins and superadmins that account suspension state has changed
             Notification::send($this->admins, new ArticleWasCreated(auth()->user(), $this->title, $this->slug));                 
             $this->resetValidation();
@@ -95,11 +94,21 @@ class Create extends Component
 
     public function deleteFile()
     {
+        $this->usersToBeNotified();
        $filePath =substr($this->article->filePath, 1);
         unlink($filePath);
-        $this->article->update(['filePath'=>NULL]);
+        $this->article->update(['filePath'=>NULL]);         
         session()->flash('message', 'File was successfully removed'); 
     }  
+
+    private function usersToBeNotified()
+    {
+
+            $this->admins = User::whereHas('roles',function($q){
+                $q->where('name','publisher')
+                    ->orWhere('name','superadmin');
+            })->get();         
+    }
 
 
     public function mount()
