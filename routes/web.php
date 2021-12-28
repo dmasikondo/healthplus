@@ -46,6 +46,9 @@ Route::group(['middleware' => ['auth:sanctum','prevent-back-history','suspended'
     Route::get('/statistics', [StatisticsController::class, 'index'])->name('statistics');
     Route::get('/quizzes/{quiz:slug}/edit', [QuizController::class, 'edit'])->name('quizzes-edit');   
     Route::get('/notifications',[NotificationController::class,'index'])->name('notifications');
+    Route::get('/notifications/mark-as-read',[NotificationController::class,'markRead'])->name('mark-notifications');
+    Route::get('/notifications/delete-read',[NotificationController::class,'destroyRead'])->name('delete-read-notifications');
+    Route::get('/notifications/delete-all',[NotificationController::class,'destroy'])->name('delete-notifications');
 });
 
 Route::get('/email/verify', function () {

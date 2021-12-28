@@ -26,6 +26,9 @@
         <div class="min-h-screen {{-- bg-gray-100 --}} bg-gradient-to-br hover:from-yellow-50 hover:via-white to-green-50">
             @livewire('navigation-menu')
 
+            {{-- reading notifications when clicked --}}
+            @include('includes.mark-notification-as-read')
+
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white shadow">
