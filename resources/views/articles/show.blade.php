@@ -8,6 +8,7 @@
       <div class="max-w-7xl overflow-hidden rounded-lg shadow-xs">
       	<div class=""> 
             @livewire('article.delete') 
+            @livewire('article.publish') 
             <x-session-message/>            
             <x-card class="col-span-8 border-b-4 {{App\models\Article::randomColor()}}"> 
                 <div class=" px-4 md:px-6 text-xl text-gray-800 leading-normal" style="font-family:Georgia,serif;">

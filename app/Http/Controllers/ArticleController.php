@@ -26,12 +26,14 @@ class ArticleController extends Controller
               }  
         }
         else{
+            //for unlogged users
             $posts = $posts->whereNotNull('published_at');
+
         }
 
         $articles = $posts->filter(request(['category','published','unpublished','content','name','second_name']))
                     ->paginate(3)
-                    ->withQueryString();   
+                    ->withQueryString(); 
         return view('articles.index', compact('articles'));
     }
 

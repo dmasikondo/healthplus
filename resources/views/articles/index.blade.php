@@ -26,20 +26,18 @@
         @if($articles->count())
 
         {{$articles->links()}}
-        @can('view', $articles[0])
             <x-articles.article-featured-card :article="$articles[0]"/>
-        @endcan
+
             <div class="lg:grid lg:grid-cols-6">
                 @foreach($articles->skip(1) as $article)
-            @can('view', $article)
                 <x-articles.article-card 
                     :article="$article" 
                     class="{{$loop->iteration < 3 ? 'col-span-3': 'col-span-2'}}"
                     />
-            @endcan
                 @endforeach
             </div> 
-            {{$articles->links()}}             
+            {{$articles->links()}}  
+                       
         @else
             @can('create', App\models\Article::class)
                 <p class="text-center">No articles yet. <x-link href="/articles/create">Create something informative</x-link>
