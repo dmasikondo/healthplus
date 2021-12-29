@@ -8,7 +8,7 @@
         <x-session-warning/>
         <x-jet-validation-errors class="mb-4" />
         <div class="fixed inset-0 z-0 hidden lg:block" style="z-index: 0;">
-            <img  src="/storage/images/wave.png" >
+            <img  src="/storage/images/wave.png" style="z-index:0;" >
         </div>
         
 
@@ -24,7 +24,7 @@
                 <div class="mt-4 relative flex-1">
                     <x-form.input id="email" type="email" name="email" placeholder="Email" value="{{old('email')}}" required/> 
                     <x-form.label for="email">Email</x-form.label>             
-                    <div class="absolute right-0 top-0 mt-6 mr-2">
+                    <div class="absolute right-0 top-0 mt-2 mr-2">
                         <x-icon name="mail-open" class="h-6 w-6 text-green-600 " stroke-width="1"/>                           
                     </div>
                     <p class="text-red-900 italic text-sm">@error('email') {{$message}} @enderror</p>                    
@@ -35,7 +35,7 @@
                 <div class="mt-4 relative flex-1">
                     <x-form.input id="password" type="password" name="password" placeholder="Password" required/> 
                     <x-form.label for="password">Password</x-form.label>             
-                    <div class="absolute right-0 top-0 mt-6 mr-2">
+                    <div class="absolute right-0 top-0 mt-2 mr-2">
                         <x-icon name="lock-open" class="h-6 w-6 text-green-600 " stroke-width="1"/>                           
                     </div>
                     <p class="text-red-900 italic text-sm">@error('password') {{$message}} @enderror</p>                    

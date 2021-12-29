@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -70,6 +71,26 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Role::class)->withTimestamps();    
     } 
+
+    /**
+     * Get the default profile photo URL if no profile photo has been uploaded.
+     *
+     *
+     */
+    /**
+     * @return string
+     */
+    public function getProfilePhotoUrlAttribute()
+    {
+        $name = $this->first_name.' '.$this->surname;
+/*      return $this->profile_photo_path
+                    ? Storage::disk($this->profilePhotoDisk())->url($this->profile_photo_path)
+                    : $this->defaultProfilePhotoUrl(); */       
+        if(isset($this->profile_photo_path)){
+            return Storage::disk($this->profilePhotoDisk())->url($this->profile_photo_path);
+        }
+        return 'https://ui-avatars.com/api/?name='.urlencode($name).'&color=7F9CF5&background=EBF4FF';
+    }
 
     /**
      * Assign user a role

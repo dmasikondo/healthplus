@@ -44,7 +44,22 @@
                 <x-sidebar.menu/>
               </div>
               <div class="flex-1 sm:ml-32 ml-12 md:ml-0">
-                <main class="">                   
+                <main class="">
+                    <nav class="md:flex md:justify-between md:items-center mt-2">
+                        <div>
+                            <a href="/">
+                                <img src="{{url('storage/images/health_plus_logo.svg')}}" alt="Health Plus Logo" style="height: 2em;">
+                            </a>
+                        </div>
+
+            {{--             <div class="mt-8 md:mt-0">
+                            <a href="/" class="text-xs font-bold uppercase">Home Page</a>
+
+                            <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                                Subscribe for Updates
+                            </a>
+                        </div> --}}
+                    </nav>                                   
                     {{ $slot }}
                 </main>
               </div>
