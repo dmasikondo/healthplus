@@ -1,10 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-orange-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Quiz ') }} 
         </h2>
     </x-slot> 
-<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">                     
+<div class="max-w-7xl {{-- mx-auto --}} sm:px-6 lg:px-8">                     
      <div class="mt-4 mx-4">
       <div class="max-w-7xl overflow-hidden rounded-lg shadow-xs">
       @php
@@ -15,8 +15,8 @@
         <div class="grid md:grid-cols-2 md:gap-4 text-gray-900 my-4 pr-6">
         @if($quizzes->count()>0)            
              @foreach($quizzes as $quiz)
-            <div class=" px-4 md:px-6 text-xl text-gray-800 leading-normal border-b-2 border-gray-200 py-4" style="font-family:Georgia,serif;">
-                <div class="font-sans my-4">
+            <div class="p-4 transition-colors duration-300 bg-gradient-to-br from-yellow-50 via-white to-green-50  border border-black border-opacity-0 hover:border-opacity-5 rounded-xl" style="font-family:Georgia,serif;">
+                <div class="font-sans my-4 ">
                     <p class="text-base md:text-sm text-green-500 font-bold"> 
                        
                     </p>
@@ -32,10 +32,10 @@
                     </p> 
                     <h4 class="flex justify-end">
                         <button title="Edit" onclick="window.location.href='/quizzes/{{$quiz->slug}}/edit'"  class="text-green-500 hover:text-green-700">
-                            <x-icon name="edit" class="text-green-500 hover:text-green-700" stroke-width="2"/> Edit                                       
-                        </button>
+                            <x-icon name="edit" class="text-green-500 hover:text-green-700 h-6 w-6" stroke-width="2"/> Edit                                       
+                        </button> &nbsp; &nbsp;
                         <button title="Delete Quiz"   class="text-red-500 hover:text-red-700" onclick="window.livewire.emitTo('quiz.delete','deleteQuiz','{{$quiz->slug}}')">
-                            <x-icon name="user-remove"/> Delete
+                            <x-icon name="trash" class="h-6 w6"/> Delete
                         </button>
                     </h4>                                           
                 </div>

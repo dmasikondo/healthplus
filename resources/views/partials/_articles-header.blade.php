@@ -22,7 +22,7 @@
 
             <div class="space-y-2 lg:space-y-0 lg:space-x-4 mt-8">
                 <!--  Category -->
-                <div class="relative lg:flex lg:inline-flex items-center bg-gradient-to-br from-yellow-50 via-white to-green-50 border border-1 border-black" >
+                <div class="relative lg:flex lg:inline-flex items-center bg-gradient-to-br from-yellow-50 via-white to-green-50 border border-1 border-black mt-8" >
                     <x-articles.dropdown> 
                          <x-slot name="title">
                             {{isset(request()->category)? ucwords(request()->category): 'Categories'}}
@@ -40,7 +40,7 @@
                         </x-articles.dropdown>
                     </div>
                 <!-- Published Filters -->
-                <div class="relative lg:flex lg:inline-flex items-center bg-gradient-to-br from-yellow-50 via-white to-green-50 border border-1 border-black">
+                <div class="relative lg:flex lg:inline-flex items-center bg-gradient-to-br from-yellow-50 via-white to-green-50 border border-1 border-black mt-8">
                     <x-articles.dropdown> 
                          <x-slot name="title">
                             @if(isset(request()->published))

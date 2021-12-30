@@ -31,7 +31,7 @@
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white shadow">
+                <header {{$attributes->merge(['class'=>"bg-white shadow hidden md:block"])}}>
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
@@ -45,7 +45,7 @@
               </div>
               <div class="flex-1 sm:ml-32 ml-12 md:ml-0">
                 <main class="">
-                    <nav class="md:flex md:justify-between md:items-center mt-2">
+                    <nav class="md:flex md:justify-between md:items-center m-6">
                         <div>
                             <a href="/">
                                 <img src="{{url('storage/images/health_plus_logo.svg')}}" alt="Health Plus Logo" style="height: 2em;">

@@ -3,6 +3,11 @@
                         Active 
                         <x-icon name="check-circle" class="inline w-4 h-4"/>
                       </span> 
+                    @elseif(!$user->must_reset && $user->is_suspended && is_null($user->email_verified_at))
+                      <span class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full">  
+                        Suspended and Must verify email 
+                        <x-icon name="exclamation" class="inline w-4 h-4"/>
+                      </span>                      
                     @elseif(!$user->must_reset && !$user->is_suspended && is_null($user->email_verified_at))
                       <span class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full">  
                         Must verify email

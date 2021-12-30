@@ -1,4 +1,4 @@
-<div class="{{-- absolute w-full --}} flex justify-center bg-gray-200  {{-- h-screen --}} items-center">
+<div class="{{-- absolute w-full --}} flex justify-center bg-gray-200  {{-- h-screen --}} items-center my-4">
     
   <div class="rounded-xl bg-white w-full px-6 overflow-x-auto{{-- md:w-2/3 --}} {{-- lg:w-1/3 --}}"
         x-data="{ isUploading: false, progress: 0 }"
@@ -119,7 +119,7 @@
         </div>
     @endif 
 
-        <button type="submit" class="inline px-4 py-3 rounded-full font-bold text-white bg-green-300 hover:bg-yellow-300 cursor-pointer" >
+        <button type="submit" class="inline px-4 py-3 rounded-full font-bold text-white bg-green-300 hover:bg-green-100 hover:text-green-900 cursor-pointer" >
             {{empty($article_id)? 'Create Aticle': 'Update Article'}}
           
         </button>

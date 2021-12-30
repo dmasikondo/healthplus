@@ -9,7 +9,7 @@ class Article extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $fillable = ['id','user_id','filePath','title','category','description','slug','link'];
 
     protected $hidden =['updated_at'];
     /**

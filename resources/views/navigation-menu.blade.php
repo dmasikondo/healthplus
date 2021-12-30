@@ -12,7 +12,7 @@
 
                 <!-- Navigation Links -->
 
-                <div class="space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('articles') }}" :active="request()->routeIs('articles')||request()->routeIs('articles-create')">
                         {{ __('Articles') }}
                     </x-jet-nav-link>
@@ -31,13 +31,22 @@
                     <x-jet-nav-link href="{{ route('pmtct') }}" :active="request()->routeIs('pmtct')">
                         {{ __('PMTCT') }}
                     </x-jet-nav-link>
+                </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('quizzes') }}" :active="request()->routeIs('quizzes-create')||request()->routeIs('quizzes')">
                         {{ __('Quiz') }}
                     </x-jet-nav-link>
-                </div>                    
-                </div>                   
+                </div>  
             </div>
+
+        @guest
+            <div class="hidden {{-- space-x-8 --}} sm:-my-px sm:ml-10 sm:flex justify-end align-right">                
+                <x-jet-nav-link href="/login" class="align-right">
+                    <x-icon name="key" class="h-6 w-6"/>
+                    {{ __('Login') }}
+                </x-jet-nav-link>
+            </div>
+        @endguest             
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Teams Dropdown -->
@@ -92,6 +101,7 @@
 
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">
+
                     <x-jet-dropdown align="right" width="48">
                         <x-slot name="trigger">
                         @auth
@@ -162,27 +172,39 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('Home') }}
             </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('articles') }}" :active="request()->routeIs('articles')">
+                {{ __('Articles') }}
+            </x-jet-responsive-nav-link>  
+            <x-jet-responsive-nav-link href="{{ route('quizzes') }}" :active="request()->routeIs('quizzes')">
+                {{ __('Quizzes') }}
+            </x-jet-responsive-nav-link> 
+        @guest    
+            <x-jet-responsive-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
+                {{ __('Login') }}
+            </x-jet-responsive-nav-link>                        
+        @endguest 
+            
         </div>
 
         <!-- Responsive Settings Options -->
 
         <div class="pt-4 pb-1 border-t border-gray-200">
         @auth
-            <div class="flex items-center px-4">
+            <div class="flex justify-end px-4">
                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                     <div class="flex-shrink-0 mr-3">
-                        <img class="h-10 w-10 rounded-full object-cover" @auth src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->profile_photo_url }} @endauth" />
+                        <img class="h-10 w-10 rounded-full object-cover text-right" @auth src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->profile_photo_url }} @endauth" />
                     </div>
                 @endif
                 <div>
-                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->first_name }} {{ Auth::user()->surname }}</div>
-                    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                    <div class="font-medium text-base text-gray-800 text-right">{{ Auth::user()->first_name }} {{ Auth::user()->surname }}</div>
+                    <div class="font-medium text-sm text-gray-500 text-right">{{ Auth::user()->email }}</div>
                 </div>
             </div>
-        @endauth
-            <div class="mt-3 space-y-1">
+       
+            <div class="mt-3 space-y-1">                              
                 <!-- Account Management -->
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                     {{ __('Profile') }}
@@ -236,6 +258,7 @@
                     @endforeach
                 @endif
             </div>
+        @endauth
         </div>
     </div>
 </nav>

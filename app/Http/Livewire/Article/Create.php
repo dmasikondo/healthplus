@@ -69,10 +69,14 @@ class Create extends Component
         else{
             $this->slug = $this->article->slug;  
         }
-            Auth::user()->articles()->updateOrCreate(['id'=>$this->article_id],['filePath' =>$url, 'title' =>$this->title,
+            Auth::user()->articles()->updateOrCreate(
+                ['id'=>$this->article_id],
+                ['filePath' =>$url, 'title' =>$this->title,
                 'category'=>$this->category, 'description'=>$this->description,'slug'=>$this->slug,
                 'link'=>$this->link,
             ]); 
+
+
 
             $this->usersToBeNotified();       
   
@@ -113,7 +117,7 @@ class Create extends Component
 
     public function mount()
     {
-        if(!empty($this->article))
+        if(isset($this->article))
         {
             $this->title = $this->article->title;
             $this->category =$this->article->category;

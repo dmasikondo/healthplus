@@ -19,9 +19,11 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-})->name('dashboard');
+})->name('dashboard');*/
+
+Route::get('/',  [ArticleController::class, 'index'])->name('dashboard');
 
 Route::get('/users/activate-account',[UserController::class, 'activate'])->name('account-activation');
 Route::put('/users/activate-account',[UserController::class, 'activation']);

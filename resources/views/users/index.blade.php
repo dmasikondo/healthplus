@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-indigo-200 leading-tight">
-            {{ __('HealthPlus Users') }} 
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('HealthPlus User Profiles') }} 
         </h2>
     </x-slot>
 
