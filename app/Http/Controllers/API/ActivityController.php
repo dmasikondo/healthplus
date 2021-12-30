@@ -14,7 +14,7 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        $activities =Article::all();
+        $activities =Article::whereNotNull('published_at')->get();
         //return response()->json(['activities'=>$activities]);
         return $activities;
     }
