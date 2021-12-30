@@ -45,6 +45,7 @@ class ArticleController extends Controller
 
     public function show(Article $article)
     {
+        $this->authorize('view', $article);
         return view('articles.show', compact('article'));
     }
 
